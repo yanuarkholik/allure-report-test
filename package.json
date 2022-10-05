@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --recursive --timeout 10000 test.js"
+    "test": "mocha --no-timeouts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chai": "^4.3.6",
     "chromedriver": "^105.0.0",
     "geckodriver": "^3.0.2",
     "mocha": "^10.0.0",
