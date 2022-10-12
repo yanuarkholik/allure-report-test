@@ -12,7 +12,7 @@ describe('XL Single Approval', function() {
     await driver.sleep(3000);
     await driver.quit();
   })
-  it('Approval Request (All Layer) - Paralel', async function() {
+  it('Approve (All Layer) - Paralel', async function() {
     await driver.get("https://sap-hotfix.merapi.alurkerja.com");
     await driver.sleep(2000);
     await driver.manage().window().maximize();
