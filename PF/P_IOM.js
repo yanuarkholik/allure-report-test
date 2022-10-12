@@ -12,7 +12,7 @@ describe('XL Single Approval', function() {
     await driver.sleep(3000);
     await driver.quit();
   })
-  it('IOM Submit Request Approval', async function() {
+  it('Inter Office Memo Submit Request Approval', async function() {
     await driver.get("https://sap-hotfix.merapi.alurkerja.com");
     await driver.sleep(2000);
     await driver.manage().window().maximize();
