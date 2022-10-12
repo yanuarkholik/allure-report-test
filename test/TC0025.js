@@ -9,10 +9,10 @@ describe('XL Single Approval', function() {
     vars = {}
   })
   after(async function() {
-    // await driver.sleep(3000);
-    // await driver.quit();
+    await driver.sleep(3000);
+    await driver.quit();
   })
-  it('Login', async function() {
+  it('Search Document Category', async function() {
     await driver.get("https://approval-fe.dev.alurkerja.com/");
     await driver.sleep(2000);
     await driver.manage().window().maximize();
