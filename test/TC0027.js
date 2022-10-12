@@ -119,9 +119,9 @@ describe('XL Single Approval', function() {
 
     //create document
     await driver.findElement(By.css("#kt_wizard_v1 > div.row.my-10.my-lg-15.px-lg-12.ng-star-inserted > div > div:nth-child(3) > div > div.btn.btn-primary.font-weight-bold.btn-pill.btn-lg.ng-star-inserted")).click();
-    await driver.sleep(5000);
+    await driver.sleep(10000);
     await driver.findElement(By.xpath('//*[@id="kt_body"]/ngb-modal-window[2]/div/div/app-preview-request-document-modal/div/div[3]/button')).click();
-    await driver.sleep(3000);
+    await driver.sleep(5000);
     await driver.findElement(By.xpath('//*[@id="kt_body"]/div[3]/div/div[6]/button[1]')).click();
 
     //test
