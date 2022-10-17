@@ -10,7 +10,7 @@ describe('XL Single Approval', function() {
   })
   after(async function() {
     await driver.sleep(3000);
-    // await driver.quit();
+    await driver.quit();
   })
   it('Delete Signature', async function() {
     await driver.get("https://approval-fe.dev.alurkerja.com/");

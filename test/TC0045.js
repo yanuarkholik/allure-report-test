@@ -27,16 +27,9 @@ describe('XL Single Approval', function() {
     await driver.sleep(2000);
     await driver.get("https://approval-fe.dev.alurkerja.com/user");
     await driver.sleep(7000);
-    await driver.findElement(By.css(".btn-primary:nth-child(1)")).click();
-    await driver.sleep(5000);
-    await driver.findElement(By.xpath('//*[@id="kt_body"]/ngb-modal-window/div/div/app-edit-user-modal/div/div[2]/div/form/div[3]/div[2]')).click();
-    await driver.sleep(2000);
-    await driver.findElement(By.css("#mat-option-2 > .mat-option-text")).click();
-    await driver.sleep(2000);
-    await driver.findElement(By.xpath(`//*[@id="kt_body"]/ngb-modal-window/div/div/app-edit-user-modal/div/div[2]/div/form/div[3]/div[4]/div/div/input`)).sendKeys('C:\\Users\\Brambudi\\Pictures\\javan issue\\Sample-jpg-image-50kb.jpg');
-    await driver.findElement(By.xpath(`//*[@id="kt_body"]/ngb-modal-window/div/div/app-edit-user-modal/div/div[2]/div/form/div[6]/div[2]/button`)).click();
-    await driver.sleep(7000);
-    let namaDashboard = await driver.findElement(By.xpath('//*[@id="swal2-title"]')).getText();
-    expect(namaDashboard).to.contains("Success");
+    await driver.findElement(By.xpath('//*[@id="kt_content"]/div/div/app-user/div/div[2]/div[1]/div[2]/div/div[3]/div/input')).sendKeys('riris', Key.RETURN);
+    await driver.sleep(4000);
+    let namaDashboard = await driver.findElement(By.xpath('//*[@id="kt_content"]/div/div/app-user/div/div[2]/div[2]/table/tbody/tr[1]/td[2]')).getText();
+    expect(namaDashboard).to.contains("Riris");
   })
 })
