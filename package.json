@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --no-timeouts"
+    "test": "mocha -r dotenv/config  --no-timeouts"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +12,7 @@
   "dependencies": {
     "chai": "^4.3.6",
     "chromedriver": "^105.0.0",
+    "dotenv": "^16.0.3",
     "geckodriver": "^3.0.2",
     "mocha": "^10.0.0",
     "selenium-webdriver": "^4.4.0"
