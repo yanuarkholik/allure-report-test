@@ -9,8 +9,8 @@ describe('XL Single Approval', function() {
     vars = {}
   })
   after(async function() {
-    // await driver.sleep(3000);
-    // await driver.quit();
+    await driver.sleep(3000);
+    await driver.quit();
   })
   it('Inter Office Memo Submit Request Approval - Sequential', async function() {
     await driver.get("https://sap-hotfix.merapi.alurkerja.com");
