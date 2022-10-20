@@ -9,8 +9,8 @@ describe('XL Single Approval', function() {
     vars = {}
   })
   after(async function() {
-    // await driver.sleep(3000);
-    // await driver.quit();
+    await driver.sleep(3000);
+    await driver.quit();
   })
   it('Approve (All Layer) - Sequential', async function() {
     await driver.get("https://sap-hotfix.merapi.alurkerja.com");
@@ -39,7 +39,7 @@ describe('XL Single Approval', function() {
     await driver.sleep(3000);
     await driver.findElement(By.xpath('//*[@id="kt_header"]/div/app-topbar/div[2]/div[2]/app-user-dropdown-inner/div/button')).click();
     await driver.sleep(5000);
-
+gi
     //login approval 2
     await driver.findElement(By.xpath('//*[@id="kt_login"]/div[2]/app-login/div/div[2]/div/button[2]')).click();
     await driver.sleep(2000);

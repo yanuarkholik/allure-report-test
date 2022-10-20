@@ -65,15 +65,6 @@ describe('XL Single Approval', function() {
     //layer 2
     await driver.sleep(3000);
     await driver.findElement(By.xpath('//*[@id="kt_wizard_v1"]/div[2]/div/form/div[2]/div[3]/div/div[2]/div/div[1]/div/div/label[1]')).click(); //button sequential
-    // await driver.findElement(By.xpath('//*[@id="kt_wizard_v1"]/div[2]/div/form/div[2]/div[3]/div/div[2]/div/div[2]/div[2]/select/option[2]')).click(); 
-    // await driver.findElement(By.css("#mat-select-6")).click();
-    // await driver.sleep(5000);
-    // await driver.findElement(By.xpath('//*[@id="mat-option-92"]/span/ngx-mat-select-search/div/input')).sendKeys('test');
-    // await driver.sleep(5000);
-    // await driver.findElement(By.id("mat-option-101")).click();
-    // await driver.sleep(2000);
-    // await driver.findElement(By.css("#kt_wizard_v1 > div.row.my-10.my-lg-15.px-lg-12.ng-star-inserted > div > form > div:nth-child(2) > div:nth-child(2) > div > div.card-body > div > div.form-group.row.mt-0 > div.col-lg-2.mt-3.ng-star-inserted > button")).click();
-    // await driver.sleep(2000);
     await driver.findElement(By.xpath('//*[@id="kt_wizard_v1"]/div[2]/div/form/div[2]/div[7]/div/button')).click(); //add layer button
 
     //layer 3
