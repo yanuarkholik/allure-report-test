@@ -9,8 +9,8 @@ describe('XL Single Approval', function() {
     vars = {}
   })
   after(async function() {
-    await driver.sleep(3000);
-    await driver.quit();
+    // await driver.sleep(3000);
+    // await driver.quit();
   })
   it('Inter Office Memo Submit Request Approval', async function() {
     await driver.get("https://sap-hotfix.merapi.alurkerja.com");
@@ -96,9 +96,9 @@ describe('XL Single Approval', function() {
     await driver.findElement(By.xpath('//*[@id="kt_wizard_v1"]/div[2]/div/form/div[2]/div[5]/div/div[2]/div/div[2]/div[2]/select/option[2]')).click();
     await driver.findElement(By.css("#mat-select-value-11")).click();
     await driver.sleep(5000);
-    await driver.findElement(By.css("#mat-option-199 > span > ngx-mat-select-search > div > input")).sendKeys('t');
+    await driver.findElement(By.css("#mat-option-188 > span > ngx-mat-select-search > div > input")).sendKeys('t');
     await driver.sleep(5000);
-    await driver.findElement(By.id("mat-option-201")).click();
+    await driver.findElement(By.id("mat-option-190")).click();
     await driver.sleep(2000);
     await driver.findElement(By.css("#kt_wizard_v1 > div.row.my-10.my-lg-15.px-lg-12.ng-star-inserted > div > form > div:nth-child(2) > div:nth-child(5) > div > div.card-body > div > div.form-group.row.mt-0 > div.col-lg-2.mt-3.ng-star-inserted > button")).click();
     await driver.sleep(2000);
@@ -110,9 +110,9 @@ describe('XL Single Approval', function() {
     await driver.findElement(By.xpath('//*[@id="kt_wizard_v1"]/div[2]/div/form/div[2]/div[6]/div/div[2]/div/div[2]/div[2]/select/option[2]')).click();
     await driver.findElement(By.css("#mat-select-value-13")).click();
     await driver.sleep(5000);
-    await driver.findElement(By.css("#mat-option-282 > span > ngx-mat-select-search > div > input")).sendKeys('t');
+    await driver.findElement(By.css("#mat-option-260 > span > ngx-mat-select-search > div > input")).sendKeys('t');
     await driver.sleep(5000);
-    await driver.findElement(By.id("mat-option-371")).click();
+    await driver.findElement(By.id("mat-option-335")).click();
     await driver.sleep(2000);
     await driver.findElement(By.xpath('//*[@id="kt_wizard_v1"]/div[2]/div/form/div[2]/div[6]/div/div[2]/div/div[2]/div[4]/button')).click();
     await driver.sleep(2000);
