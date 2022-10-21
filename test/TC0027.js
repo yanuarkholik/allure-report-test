@@ -24,7 +24,7 @@ describe('XL Single Approval', function() {
     await driver.findElement(By.css("#email")).sendKeys('liesdal@xl.co.id');
     await driver.findElement(By.css("#exampleInputPassword1")).sendKeys('asdf1234');
     await driver.findElement(By.css("#kt_login > div.h-100 > app-login > div > div.col-12.col-md-6.d-flex.align-items-center.justify-content-end > div > form > button")).click();
-    await driver.sleep(3000);
+    await driver.sleep(5000);
 
     //request approval page
     await driver.get("https://sap-hotfix.merapi.alurkerja.com/request-approval");
@@ -40,7 +40,7 @@ describe('XL Single Approval', function() {
     await driver.findElement(By.css("#mat-option-24 > span")).click();
     await driver.findElement(By.css("#kt_body > ngb-modal-window > div > div > app-select-request-document > div > div.modal-footer.ng-star-inserted > button")).click();
     await driver.sleep(5000);
-    await driver.findElement(By.css("#kt_wizard_v1 > div.row.my-10.my-lg-15.px-lg-12.ng-star-inserted > div > form > div.card.card-custom.pb-5 > div > div:nth-child(3) > div > input")).sendKeys('test');
+    await driver.findElement(By.css("#kt_wizard_v1 > div.row.my-10.my-lg-15.px-lg-12.ng-star-inserted > div > form > div.card.card-custom.pb-5 > div > div:nth-child(3) > div > input")).sendKeys('Inter Office Memo Paralel');
     await driver.findElement(By.xpath('//*[@id="kt_wizard_v1"]/div[2]/div/form/div[1]/div/div[4]/div/div/div/textarea')).sendKeys('test');
     let input = await driver.findElement(By.css("#kt_wizard_v1 > div.row.my-10.my-lg-15.px-lg-12.ng-star-inserted > div > form > div.card.card-custom.pb-5 > div > div:nth-child(6) > div:nth-child(3) > div > div > input"));
     await input.sendKeys("/Users/ardelliapp/Downloads/IOM.docx");
@@ -81,9 +81,9 @@ describe('XL Single Approval', function() {
     await driver.findElement(By.xpath('//*[@id="kt_wizard_v1"]/div[2]/div/form/div[2]/div[4]/div/div[2]/div/div[1]/div/div/label[1]')).click();
     await driver.findElement(By.xpath('//*[@id="kt_wizard_v1"]/div[2]/div/form/div[2]/div[4]/div/div[2]/div/div[2]/div[2]/select/option[2]')).click();
     await driver.findElement(By.css("#mat-select-8")).click();
-    await driver.sleep(7000);
+    await driver.sleep(5000);
     await driver.findElement(By.css("#mat-option-116 > span > ngx-mat-select-search > div > input")).sendKeys('t');
-    await driver.sleep(7000);
+    await driver.sleep(5000);
     await driver.findElement(By.id("mat-option-119")).click();
     await driver.sleep(2000);
     await driver.findElement(By.css("#kt_wizard_v1 > div.row.my-10.my-lg-15.px-lg-12.ng-star-inserted > div > form > div:nth-child(2) > div:nth-child(4) > div > div.card-body > div > div.form-group.row.mt-0 > div.col-lg-2.mt-3.ng-star-inserted > button")).click();
@@ -95,9 +95,9 @@ describe('XL Single Approval', function() {
     await driver.findElement(By.xpath('//*[@id="kt_wizard_v1"]/div[2]/div/form/div[2]/div[5]/div/div[2]/div/div[1]/div/div/label[1]')).click();
     await driver.findElement(By.xpath('//*[@id="kt_wizard_v1"]/div[2]/div/form/div[2]/div[5]/div/div[2]/div/div[2]/div[2]/select/option[2]')).click();
     await driver.findElement(By.css("#mat-select-value-11")).click();
-    await driver.sleep(7000);
+    await driver.sleep(5000);
     await driver.findElement(By.css("#mat-option-199 > span > ngx-mat-select-search > div > input")).sendKeys('t');
-    await driver.sleep(7000);
+    await driver.sleep(5000);
     await driver.findElement(By.id("mat-option-201")).click();
     await driver.sleep(2000);
     await driver.findElement(By.css("#kt_wizard_v1 > div.row.my-10.my-lg-15.px-lg-12.ng-star-inserted > div > form > div:nth-child(2) > div:nth-child(5) > div > div.card-body > div > div.form-group.row.mt-0 > div.col-lg-2.mt-3.ng-star-inserted > button")).click();
@@ -109,9 +109,9 @@ describe('XL Single Approval', function() {
     await driver.findElement(By.xpath('//*[@id="kt_wizard_v1"]/div[2]/div/form/div[2]/div[6]/div/div[2]/div/div[1]/div/div/label[1]')).click();
     await driver.findElement(By.xpath('//*[@id="kt_wizard_v1"]/div[2]/div/form/div[2]/div[6]/div/div[2]/div/div[2]/div[2]/select/option[2]')).click();
     await driver.findElement(By.css("#mat-select-value-13")).click();
-    await driver.sleep(7000);
+    await driver.sleep(5000);
     await driver.findElement(By.css("#mat-option-282 > span > ngx-mat-select-search > div > input")).sendKeys('t');
-    await driver.sleep(7000);
+    await driver.sleep(5000);
     await driver.findElement(By.id("mat-option-371")).click();
     await driver.sleep(2000);
     await driver.findElement(By.xpath('//*[@id="kt_wizard_v1"]/div[2]/div/form/div[2]/div[6]/div/div[2]/div/div[2]/div[4]/button')).click();
@@ -121,7 +121,7 @@ describe('XL Single Approval', function() {
     await driver.findElement(By.css("#kt_wizard_v1 > div.row.my-10.my-lg-15.px-lg-12.ng-star-inserted > div > div:nth-child(3) > div > div.btn.btn-primary.font-weight-bold.btn-pill.btn-lg.ng-star-inserted")).click();
     await driver.sleep(10000);
     await driver.findElement(By.xpath('//*[@id="kt_body"]/ngb-modal-window[2]/div/div/app-preview-request-document-modal/div/div[3]/button')).click();
-    await driver.sleep(10000);
+    await driver.sleep(7000);
     await driver.findElement(By.xpath('//*[@id="kt_body"]/div[3]/div/div[6]/button[1]')).click();
 
     //test
