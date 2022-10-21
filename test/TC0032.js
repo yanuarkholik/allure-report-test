@@ -9,8 +9,8 @@ describe('XL Single Approval', function() {
     vars = {}
   })
   after(async function() {
-    await driver.sleep(3000);
-    await driver.quit();
+    // await driver.sleep(3000);
+    // await driver.quit();
   })
   it('Document Data Sharing Request - External Submit Request Approval', async function() {
     await driver.get("https://sap-hotfix.merapi.alurkerja.com");
@@ -37,19 +37,17 @@ describe('XL Single Approval', function() {
     await driver.sleep(2000);
     await driver.findElement(By.css("#mat-option-0 > span > ngx-mat-select-search > div > input")).sendKeys('Document Data Sharing Request');
     await driver.sleep(5000);
-    await driver.findElement(By.css("#mat-option-8 > span")).click();
+    await driver.findElement(By.css("#mat-option-9 > span")).click();
     await driver.sleep(2000);
     await driver.findElement(By.css("#mat-select-value-3")).click();
     await driver.sleep(2000);
-    //await driver.findElement(By.css("#mat-option-49 > span > ngx-mat-select-search > div > input")).click();
-    //await driver.sleep(2000);
-    await driver.findElement(By.css("#mat-option-48")).click();
+    await driver.findElement(By.css("#mat-option-50")).click();
     await driver.sleep(2000);
     await driver.findElement(By.css("#kt_body > ngb-modal-window > div > div > app-select-request-document > div > div.modal-footer.ng-star-inserted > button")).click();
     await driver.sleep(5000);
 
     //form
-    await driver.findElement(By.css("#kt_wizard_v1 > div.row.my-10.my-lg-15.px-lg-12.ng-star-inserted > div > form > div.card.card-custom.pb-5 > div > div:nth-child(4) > div > input")).sendKeys('test');
+    await driver.findElement(By.css("#kt_wizard_v1 > div.row.my-10.my-lg-15.px-lg-12.ng-star-inserted > div > form > div.card.card-custom.pb-5 > div > div:nth-child(4) > div > input")).sendKeys('Document Data Sharing Request - External (Paralel)');
     await driver.findElement(By.css("#mat-select-value-5 > span > span")).click();
     await driver.sleep(2000);
     await driver.findElement(By.css("#mat-option-100")).click();
@@ -66,6 +64,8 @@ describe('XL Single Approval', function() {
     await driver.sleep(2000);
     await driver.findElement(By.css("#kt_wizard_v1 > div.row.my-10.my-lg-15.px-lg-12.ng-star-inserted > div > form > div.card.card-custom.pb-5 > div > div:nth-child(15) > div > div > div > input")).sendKeys('Data Request Number');
     await driver.findElement(By.css("#kt_wizard_v1 > div.row.my-10.my-lg-15.px-lg-12.ng-star-inserted > div > form > div.card.card-custom.pb-5 > div > div:nth-child(17) > div > div > div > textarea")).sendKeys('Name of Data');
+    await driver.findElement(By.css("#kt_wizard_v1 > div.row.my-10.my-lg-15.px-lg-12.ng-star-inserted > div > form > div.card.card-custom.pb-5 > div > div:nth-child(18) > div > div > div > input")).sendKeys("Purpose");
+    await driver.sleep(3000);
     await driver.findElement(By.css("#kt_wizard_v1 > div.row.my-10.my-lg-15.px-lg-12.ng-star-inserted > div > form > div.card.card-custom.pb-5 > div > div:nth-child(19) > div > div > div > select > option:nth-child(2)")).click();
     await driver.findElement(By.css("#kt_wizard_v1 > div.row.my-10.my-lg-15.px-lg-12.ng-star-inserted > div > form > div.card.card-custom.pb-5 > div > div:nth-child(20) > div > div > div > select > option:nth-child(2)")).click();
     await driver.findElement(By.css("#kt_wizard_v1 > div.row.my-10.my-lg-15.px-lg-12.ng-star-inserted > div > form > div.card.card-custom.pb-5 > div > div:nth-child(21) > div > div > div > app-date-select-custom > div > div > input")).sendKeys('20-10-2028');
@@ -80,10 +80,10 @@ describe('XL Single Approval', function() {
     await driver.sleep(3000);
 
     //layer 1
-    //await driver.findElement(By.xpath('//*[@id="kt_wizard_v1"]/div[2]/div/form/div[2]/div[2]/div/div[2]/div/div[1]/div/div/label[1]/input')).click();
+    await driver.findElement(By.xpath('//*[@id="kt_wizard_v1"]/div[2]/div/form/div[2]/div[2]/div/div[2]/div/div[1]/div/div/label[1]/span')).click();
 
     //layer 3
-    //await driver.findElement(By.css('//*[@id="kt_wizard_v1"]/div[2]/div/form/div[2]/div[3]/div/div[2]/div/div[1]/div/div/label[1]/input')).click();
+    await driver.findElement(By.xpath('//*[@id="kt_wizard_v1"]/div[2]/div/form/div[2]/div[3]/div/div[2]/div/div[1]/div/div/label[1]/span')).click();
     await driver.findElement(By.xpath('//*[@id="kt_wizard_v1"]/div[2]/div/form/div[2]/div[7]/div/button')).click(); //add layer button
 
     //layer 4
@@ -92,9 +92,9 @@ describe('XL Single Approval', function() {
     await driver.findElement(By.xpath('//*[@id="kt_wizard_v1"]/div[2]/div/form/div[2]/div[5]/div/div[2]/div/div[2]/div[2]/select/option[2]')).click();
     await driver.findElement(By.css("#mat-select-value-15")).click();
     await driver.sleep(5000);
-    await driver.findElement(By.css("#mat-option-200 > span > ngx-mat-select-search > div > input")).sendKeys('test');
+    await driver.findElement(By.css("#mat-option-204 > span > ngx-mat-select-search > div > input")).sendKeys('t');
     await driver.sleep(5000);
-    await driver.findElement(By.xpath('//*[@id="mat-option-203"]')).click();
+    await driver.findElement(By.xpath('//*[@id="mat-option-207"]')).click();
     await driver.sleep(2000);
     await driver.findElement(By.css("#kt_wizard_v1 > div.row.my-10.my-lg-15.px-lg-12.ng-star-inserted > div > form > div:nth-child(2) > div:nth-child(5) > div > div.card-body > div > div.form-group.row.mt-0 > div.col-lg-2.mt-3.ng-star-inserted > button")).click();
     await driver.sleep(2000);
@@ -106,9 +106,9 @@ describe('XL Single Approval', function() {
     await driver.findElement(By.xpath('//*[@id="kt_wizard_v1"]/div[2]/div/form/div[2]/div[6]/div/div[2]/div/div[2]/div[2]/select/option[2]')).click();
     await driver.findElement(By.css("#mat-select-value-17")).click();
     await driver.sleep(5000);
-    await driver.findElement(By.css("#mat-option-219 > span > ngx-mat-select-search > div > input")).sendKeys('test');
+    await driver.findElement(By.css("#mat-option-276 > span > ngx-mat-select-search > div > input")).sendKeys('t');
     await driver.sleep(5000);
-    await driver.findElement(By.xpath('//*[@id="mat-option-241"]')).click();
+    await driver.findElement(By.xpath('//*[@id="mat-option-351"]')).click();
     await driver.sleep(2000);
     await driver.findElement(By.xpath('//*[@id="kt_wizard_v1"]/div[2]/div/form/div[2]/div[6]/div/div[2]/div/div[2]/div[4]/button')).click();
     await driver.sleep(2000);
