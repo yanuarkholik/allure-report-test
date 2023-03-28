@@ -1,0 +1,24 @@
+{
+  "name": "selenium-simpatik",
+  "version": "1.0.0",
+  "description": "Project untuk Selenium Simpatik",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --no-timeouts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.javan.co.id/automation-test/selenium-simpatik"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.3.7",
+    "chromedriver": "^111.0.0",
+    "dotenv": "^16.0.3",
+    "geckodriver": "^3.2.0",
+    "mocha": "^10.2.0",
+    "selenium-webdriver": "^4.8.2"
+  }
+}
