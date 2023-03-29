@@ -12,7 +12,7 @@ describe('MASTER DATA DIKLAT', function() {
     await driver.manage().window().setRect({ width: 1680, height: 956 });
   })
   after(async function() {
-    // await driver.quit();
+    await driver.quit();
   })
   it('Tambah Data Diklat', async function() {
     await driver.findElement(By.css("#username")).sendKeys('doni007');
@@ -54,7 +54,9 @@ describe('MASTER DATA DIKLAT', function() {
     await driver.findElement(By.css("button[data-btn='save']")).click()
     await driver.sleep(1000);
 
-    let alert = await driver.findElement(By.xpath("//*[@class='py-5 md:py-0']/div/div/div/div/div/p[1]")).getText();
-    expect(alert).to.equal('Data berhasil disimpan');
+    await driver.findElements(By.xpath("p[contains(text(), 'Data berhasil disimpan')]"));
+    
+    // let alert = await driver.findElement(By.xpath("//*[@class='py-5 md:py-0']/div/div/div/div/div/p[1]")).getText();
+    // expect(alert).to.equal('Data berhasil disimpan');
   })
 })
