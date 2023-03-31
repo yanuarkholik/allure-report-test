@@ -9,7 +9,7 @@ describe('MASTER DATA KEDUDUKAN PEGAWAI', function() {
     vars = {}
     await driver.get("https://simpatik-fe.merapi.javan.id/login");
     await driver.manage().window().maximize();
-    await driver.manage().window().setRect({ width: 1680, height: 956 });
+    // await driver.manage().window().setRect({ width: 1680, height: 956 });
   })
   after(async function() {
     await driver.quit();
@@ -18,7 +18,7 @@ describe('MASTER DATA KEDUDUKAN PEGAWAI', function() {
     await driver.findElement(By.css("#username")).sendKeys('doni007');
     await driver.findElement(By.css("#password")).sendKeys('secret');
     await driver.findElement(By.css("button[type='submit']")).click()
-    await driver.sleep(2500);   
+    await driver.sleep(4500);   
     
     let dashboard = await driver.findElement(By.css('h1[class="font-bold text-lg my-4"]')).getText();
     expect(dashboard).to.equal('Dashboard')
@@ -35,32 +35,22 @@ describe('MASTER DATA KEDUDUKAN PEGAWAI', function() {
     let list = await driver.findElement(By.css('h2[class="text-lg font-medium mr-auto flex-none"]')).getText();
     expect(list).to.equal('List Kedudukan Pegawai')
 
-    // html.theme-2 body.py-5.md:py-0 div.side-nav-behind.ml-0.md:ml-[105px].xl:ml-[260px].flex.overflow-hidden.mt-10.md:mt-0 div.content div div.box form.ui.form.p-4 div.flex.sm:flex-row.items-center div.sm:w-auto.flex.mr-2 button.btn.btn-primary.shadow-md span.hidden.sm:inline.ml-2
-
-    // /html/body/div[5]/div/div[2]/div[3]/form
-    // await driver.findElement(By.xpath("//*[@class='box']/div/div[2]/div[3]/form"));
-    // await driver.findElement(By.css('input[wire:submit prevent="search"]'));
+    // expect button search
     let search_btn = await driver.findElement(By.css("span[class='hidden sm:inline ml-2']")).getText();
     expect(search_btn).to.equal('Cari')
-
-    await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr[1]/td[5]/div[1]/button[1]")).getText();
-
-    // let search_button = await driver.findElement(By.css("span[class='hidden sm:inline ml-2']")).getText();
-    // expect(search_button).to.equal('Cari');
-
-    // await driver.findElement(By.css("button[type='submit'][contains(text(), 'Cari')]"));
-
-    // // Click button detail
-    // await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr[1]/td[5]/div[1]/button[1]")).click()
-    // await driver.sleep(2000);
-    
-    // let title = await driver.findElement(By.css("h3[class='font-bold text-base leading-6']")).getText();
-    // expect(title).to.equal('Detail Diklat');
-
-    // await driver.findElements(By.xpath("//*[@class='border-t border-b border-gray-200']/div/dl/div[1]/dt[contains(text(), 'ID')]"));
-    // await driver.findElements(By.xpath("//*[@class='border-t border-b border-gray-200']/div/dl/div[2]/dt[contains(text(), 'Jenis Diklat')]"));
-    // await driver.findElements(By.xpath("//*[@class='border-t border-b border-gray-200']/div/dl/div[3]/dt[contains(text(), 'Diklat')]"));
-    // await driver.findElements(By.xpath("//*[@class='border-t border-b border-gray-200']/div/dl/div[4]/dt[contains(text(), 'Deskripsi')]"));
+    // print("ada button cari");
+    // expect button detail
+    // /html/body/div[5]/div/div[2]/div[3]/div/div/table/tbody/tr[1]/td[4]/div/button[1]
+    let buttons = await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr[1]/td[4]/div/button"));
+    let pj = buttons.size();
+    expect(pj).to.equal(3);
+    // expect(buttons.length).to.equal(3);
+    let button_detail = await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr[1]/td[4]/div[1]/button[1]"));
+    expect(button_detail).to.exist;
+    let button_edit = await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr[1]/td[4]/div[1]/button[2]"));
+    expect(button_edit).to.exist;
+    let button_delete = await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr[1]/td[4]/div[1]/button[3]"));
+    expect(button_delete).to.exist;
 
   })
 })
