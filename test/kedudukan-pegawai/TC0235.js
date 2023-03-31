@@ -1,3 +1,5 @@
+const { clear } = require('console');
+const exp = require('constants');
 const { Builder, By, Key, until } = require('selenium-webdriver');
 var expect = require('chai').expect;
 require('chromedriver')
@@ -14,13 +16,13 @@ describe('MASTER DATA KEDUDUKAN PEGAWAI', function() {
   after(async function() {
     await driver.quit();
   })
-  it('List Data Kedudukan Pegawai', async function() {
+  it('[Kedudukan Pegawai] Administrator dapat bersihkan search bar setelah melakukan pencarian data Kedudukan Pegawai', async function() {
     await driver.findElement(By.css("#username")).sendKeys('doni007');
     await driver.findElement(By.css("#password")).sendKeys('secret');
     await driver.findElement(By.css("button[type='submit']")).click()
     await driver.sleep(4500);   
     
-    let dashboard = await driver.findElement(By.css('h1[class="font-bold text-lg my-4"]')).getText();
+    let dashboard = await driver.wait(until.elementLocated(By.css('h1[class="font-bold text-lg my-4"]'))).getText();
     expect(dashboard).to.equal('Dashboard')
 
     //Select Master Data on Sidebar
@@ -35,22 +37,32 @@ describe('MASTER DATA KEDUDUKAN PEGAWAI', function() {
     let list = await driver.findElement(By.css('h2[class="text-lg font-medium mr-auto flex-none"]')).getText();
     expect(list).to.equal('List Kedudukan Pegawai')
 
-    // expect button search
-    let search_btn = await driver.findElement(By.css("span[class='hidden sm:inline ml-2']")).getText();
-    expect(search_btn).to.equal('Cari')
-    // print("ada button cari");
-    // expect button detail
-    // /html/body/div[5]/div/div[2]/div[3]/div/div/table/tbody/tr[1]/td[4]/div/button[1]
-    let buttons = await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr[1]/td[4]/div/button"));
-    // let pj = buttons.size();
-    // expect(pj).to.equal(3);
-    // expect(buttons.length).to.equal(3);
-    let button_detail = await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr[1]/td[4]/div[1]/button[1]"));
-    expect(button_detail).to.exist;
-    let button_edit = await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr[1]/td[4]/div[1]/button[2]"));
-    expect(button_edit).to.exist;
-    let button_delete = await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr[1]/td[4]/div[1]/button[3]"));
-    expect(button_delete).to.exist;
+    let second_row = await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr[2]/td[3]"));
+    expect(second_row).to.exist;
+    let keyword = await second_row.getText();
+
+    // search data
+    let search = await driver.findElement(By.name('search'));
+    await search.sendKeys(keyword, Key.ENTER);
+    await driver.sleep(3000);
+
+    // expect first row contains keyword
+    let nama_kedudukan = await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr/td[3]")).getText();
+    expect(nama_kedudukan).to.contains(keyword);
+
+    // /html/body/div[5]/div/div[2]/div[3]/form/div/div[3]/button
+    let clear_button =  await driver.findElement(By.xpath("//button[@type='reset']"));
+    expect(clear_button).to.exist;
+
+    await clear_button.click();
+    await driver.sleep(2000);
+    let val_search_input = search.getAttribute("value");
+    expect(val_search_input).to.be.empty;
+    
+    // // search data
+    // await search.sendKeys('aaaa', Key.ENTER);
+    // await driver.sleep(3000);
+
 
   })
 })
