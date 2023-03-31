@@ -44,7 +44,7 @@ describe ('SIMPATIK', function() {
     await driver.findElements(By.xpath("p[contains(text(), 'Ada Kesalahan Input')]"));
     await driver.sleep(1000);
     //Mandatory
-    let mandatory_Kota = await driver.findElement(By.xpath('//*[@id="modal-create-body"]/form/div/div[1]/div/div[1]')).getText();
+    let mandatory_Kota = await driver.findElement(By.xpath('//*[@id="modal-create-body"]/form/div/div[2]/div/div[1]')).getText();
     expect(mandatory_Kota).to.equal('Kota maksimal berisi 200 karakter.');
 
   });
