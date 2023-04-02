@@ -14,7 +14,7 @@ describe('MASTER DATA KEDUDUKAN PEGAWAI', function() {
   after(async function() {
     await driver.quit();
   })
-  it('[Kedudukan Pegawai] Administrator dapat melihat list Kedudukan Pegawai', async function() {
+  it('[Kedudukan Pegawai] Administrator tidak dapat tambah Kedudukan Pegawai dengan inputan yang sama pada field Kedudukan Pegawai yang telah ada sebelumnya', async function() {
     await driver.findElement(By.css("#username")).sendKeys('doni007');
     await driver.findElement(By.css("#password")).sendKeys('secret');
     await driver.findElement(By.css("button[type='submit']")).click()
@@ -35,22 +35,32 @@ describe('MASTER DATA KEDUDUKAN PEGAWAI', function() {
     let list = await driver.findElement(By.css('h2[class="text-lg font-medium mr-auto flex-none"]')).getText();
     expect(list).to.equal('List Kedudukan Pegawai')
 
-    // expect button search
-    let search_btn = await driver.findElement(By.css("span[class='hidden sm:inline ml-2']")).getText();
-    expect(search_btn).to.equal('Cari')
-    // print("ada button cari");
-    // expect button detail
-    // /html/body/div[5]/div/div[2]/div[3]/div/div/table/tbody/tr[1]/td[4]/div/button[1]
-    let buttons = await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr[1]/td[4]/div/button"));
-    // let pj = buttons.size();
-    // expect(pj).to.equal(3);
-    // expect(buttons.length).to.equal(3);
-    let button_detail = await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr[1]/td[4]/div[1]/button[1]"));
-    expect(button_detail).to.exist;
-    let button_edit = await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr[1]/td[4]/div[1]/button[2]"));
-    expect(button_edit).to.exist;
-    let button_delete = await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr[1]/td[4]/div[1]/button[3]"));
-    expect(button_delete).to.exist;
+    // get the first row to find kedudukan name that already exists
+    let first_row = await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr[1]/td[3]"));
+    expect(first_row).to.exist;
+    let keyword = await first_row.getText();
+    
+    // expect button insert
+    let button_insert = await driver.wait(until.elementLocated(By.css("button[class='btn bg-green-600 text-white w-left']")));
+    expect(button_insert).to.exist;
+
+    // insert new data
+    await button_insert.click();
+    await driver.wait(until.elementLocated(By.id("modal-create")));
+    
+    let input = await driver.wait(until.elementLocated(By.name('kedudukan_pegawai')));
+    expect(input).to.exist;
+
+    await input.sendKeys(keyword);
+
+    let btn_submit = await driver.findElement(By.css("#modal-create > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > button:nth-child(2)"));
+    // let btn_submit = await driver.findElement(By.css("button[data-btn='save'][class='btn btn-primary md:w-auto w-[48%]']"));
+    expect(btn_submit).to.exist;
+    await btn_submit.click();
+    await driver.sleep(2000);
+    
+
+    await driver.wait(until.elementsLocated(By.xpath("//p[contains(text(), 'input kedudukan pegawai yang anda entrikan sudah ada')]")));
 
   })
 })

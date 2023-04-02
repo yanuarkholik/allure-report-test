@@ -14,7 +14,7 @@ describe('MASTER DATA KEDUDUKAN PEGAWAI', function() {
   after(async function() {
     await driver.quit();
   })
-  it('[Kedudukan Pegawai] Administrator dapat menambahkan Kedudukan Pegawai ', async function() {
+  it('[Kedudukan Pegawai] Administrator tidak dapat tambah Kedudukan Pegawai dengan inputan lebih dari 100 karakter ', async function() {
     await driver.findElement(By.css("#username")).sendKeys('doni007');
     await driver.findElement(By.css("#password")).sendKeys('secret');
     await driver.findElement(By.css("button[type='submit']")).click()
@@ -44,10 +44,23 @@ describe('MASTER DATA KEDUDUKAN PEGAWAI', function() {
     await driver.wait(until.elementLocated(By.id("modal-create")));
     
     let input = await driver.wait(until.elementLocated(By.name('kedudukan_pegawai')));
+    expect(input).to.exist;
 
-    input.sendKeys('PPPK', Key.ENTER);
+    await input.sendKeys('[24648:17680:0402/145249.566:ERROR:cert_issuer_source_aia.cc(34)] Error parsing cert retrieved from AIA (as DER): [24648:4904:0402/145256.136:ERROR:device_event_log_impl.cc(222)] [14:52:56.137] USB: usb_device_handle_win.cc:1046[24648:4904:0402/145256.139:ERROR:device_event_log_impl.cc(222)] [14:52:56.138] USB: usb_device_handle_win.cc:1046');
+    
+    let btn_submit = await driver.findElement(By.css("#modal-create > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > button:nth-child(2)"));
+    // let btn_submit = await driver.findElement(By.css("button[data-btn='save'][class='btn btn-primary md:w-auto w-[48%]']"));
+    expect(btn_submit).to.exist;
+    await btn_submit.click();
+    await driver.sleep(2000);
+    
+    let mandatory_txt = await driver.wait(until.elementLocated(By.css("div[class='text-danger mt-1']")));
+    expect(mandatory_txt).to.exist;
+    let mandatory_txt_value = await mandatory_txt.getText();
+    expect(mandatory_txt_value).to.contains('Kedudukan Pegawai maksimal berisi 100 karakter.');
 
-    await driver.wait(until.elementsLocated(By.xpath("//p[contains(text(), 'Data berhasil disimpan')]")));
+    await driver.wait(until.elementsLocated(By.xpath("//p[contains(text(), 'Ada Kesalahan Input')]")));
+    await driver.wait(until.elementsLocated(By.xpath("//p[contains(text(), 'Cek kembali isian Anda!')]")));
 
   })
 })

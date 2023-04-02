@@ -14,7 +14,7 @@ describe('MASTER DATA KEDUDUKAN PEGAWAI', function() {
   after(async function() {
     await driver.quit();
   })
-  it('[Kedudukan Pegawai] Delete', async function() {
+  it('[Kedudukan Pegawai] Administrator dapat menghapus Kedudukan Pegawai', async function() {
     await driver.findElement(By.css("#username")).sendKeys('doni007');
     await driver.findElement(By.css("#password")).sendKeys('secret');
     await driver.findElement(By.css("button[type='submit']")).click()

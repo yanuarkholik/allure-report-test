@@ -14,7 +14,7 @@ describe('MASTER DATA KEDUDUKAN PEGAWAI', function() {
   after(async function() {
     await driver.quit();
   })
-  it('[Kedudukan Pegawai] Search Positive', async function() {
+  it('[Kedudukan Pegawai] Administrator dapat melakukan pencarian Kedudukan Pegawai berdasarkan kata yang sesuai ', async function() {
     await driver.findElement(By.css("#username")).sendKeys('doni007');
     await driver.findElement(By.css("#password")).sendKeys('secret');
     await driver.findElement(By.css("button[type='submit']")).click()
@@ -40,7 +40,7 @@ describe('MASTER DATA KEDUDUKAN PEGAWAI', function() {
     let keyword = await first_row.getText();
 
 
-    // search data pppk
+    // search data first row 
     let search = await driver.findElement(By.name('search'));
     await search.sendKeys(keyword, Key.ENTER);
     await driver.sleep(3000);
