@@ -14,7 +14,7 @@ describe('MASTER DATA KELURAHAN', function() {
   after(async function() {
     await driver.quit();
   })
-  it('[Kelurahan] Administrator dapat menghapus Kelurahan ', async function() {
+  it('[Kelurahan] Administrator dapat bersihkan search bar setelah melakukan pencarian data Kelurahan ', async function() {
     await driver.findElement(By.css("#username")).sendKeys('doni007');
     await driver.findElement(By.css("#password")).sendKeys('secret');
     await driver.findElement(By.css("button[type='submit']")).click()
@@ -34,34 +34,32 @@ describe('MASTER DATA KELURAHAN', function() {
     //Expect: There is title 'List Kelurahan' 
     let list = await driver.findElement(By.css('h2[class="text-lg font-medium mr-auto flex-none"]')).getText();
     expect(list).to.equal('List Kelurahan')
+    
+    // get data acuan
+    let second_row = await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr[2]/td[4]"));
+    expect(second_row).to.exist;
+    let keyword = await second_row.getText();
+    let data_id = await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr[2]/td[2]")).getText();
+    let kecamatan = await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr[2]/td[3]")).getText();
 
     // search data
-    let keyword = 'kamonola';
     let search = await driver.findElement(By.name('search'));
     await search.sendKeys(keyword, Key.ENTER);
     await driver.sleep(8000);
-
     
-    let kelurahan_name = await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr[1]/td[4]")).getText();
+    let data_after = await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr[1]/td[4]"));
+    expect(data_after).to.exist;
+    let keyword_2 = await data_after.getText();
+    expect(keyword_2).to.contain(keyword);
 
-    let button_delete = await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr/td[5]/div/button[3]"));
-    expect(button_delete).to.exist;
-    
-    await button_delete.click();
-    await driver.sleep(5000);
+    // clear data
+    let clear_button =  await driver.findElement(By.xpath("//button[@type='reset']"));
+    expect(clear_button).to.exist;
 
-    // delete validation
-    await driver.wait(until.elementLocated(By.id("modal-delete-confirmation")));
-    // expect text for validation
-    let validate_txt = await driver.findElement(By.css('#modal-delete-confirmation .text-slate-500')).getText();
-    expect(validate_txt).to.equal('Apakah yakin ingin menghapus nama kelurahan '+ kelurahan_name +' ?');
-
-    // search btn confirm delete
-    let btn_confirm = await driver.findElement(By.xpath('//*[@id="modal-delete-confirmation"]/div/div/div/div[2]/button[2]'));
-    expect(btn_confirm).to.exist;
-    
-    await btn_confirm.click();
-    await driver.wait(until.elementsLocated(By.xpath("//p[contains(text(), 'Data berhasil dihapus')]")));
+    await clear_button.click();
+    await driver.sleep(2000);
+    let val_search_input = search.getAttribute("value");
+    expect(val_search_input).to.be.empty;
 
   })
 })
