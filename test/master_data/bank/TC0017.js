@@ -9,12 +9,11 @@ describe('MASTER DATA BANK', function() {
     vars = {}
     await driver.get("https://simpatik-fe.merapi.javan.id/login");
     await driver.manage().window().maximize();
-    await driver.manage().window().setRect({ width: 1680, height: 956 });
   })
   after(async function() {
     await driver.quit();
   })
-  it('Dapat tambah data sub menu Bank', async function() {
+  it('Dapat tambah data sub menu Bank yang sudah ada', async function() {
     await driver.findElement(By.css("#username")).sendKeys('doni007');
     await driver.findElement(By.css("#password")).sendKeys('secret');
     await driver.findElement(By.css("button[type='submit']")).click()

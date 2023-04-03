@@ -13,23 +13,22 @@ describe('MASTER DATA BANK', function() {
   after(async function() {
     await driver.quit();
   })
-  it('Dapat tambah data sub menu Bank dengan lebih dari 200 karakter', async function() {
+  it('Dapat menambahkan data Bank berdasarkan kata kunci yang sesuai', async function() {
     await driver.findElement(By.css("#username")).sendKeys('doni007');
     await driver.findElement(By.css("#password")).sendKeys('secret');
     await driver.findElement(By.css("button[type='submit']")).click()
     
-    // halaman list data Bank
+    // halaman list data Agama
     await driver.wait(until.elementsLocated(By.xpath("//h1[contains(text(), 'Dashboard')]")));
     await driver.findElement(By.linkText("Master Data")).click();
     var ele = driver.wait(until.elementLocated(By.linkText("Bank")));
     await ele.click();
 
-    // tambah data bank
-    var bank = "Bank yang namanya lebih dari 200 karakter, coba hitung aja kalo bisa. Atau kalau emang belum yakin ya gini aja deh, cari aja word counter di google terus copas text ini biar yakin kalo ini lebih dari 200 karakter.";
-    await driver.findElement(By.css(".bg-green-600")).click();
-    var ele = driver.wait(until.elementLocated(By.name("nama_bank")));
-    await ele.sendKeys(bank);
-    await driver.findElement(By.css("button[data-btn='save']")).click();
-    await driver.wait(until.elementsLocated(By.xpath("//*[contains(text(), 'Bank maksimal berisi 200 karakter.')]")));
+    // mencari data Bank
+    var search = "Bank yang belum ada" ;
+    var ele = driver.wait(until.elementLocated(By.name("search")));
+    await ele.sendKeys(search);
+    await ele.sendKeys(Key.ENTER);
+    await driver.wait(until.elementLocated(By.xpath("//td[contains(text(), '%d')]", search)));
   })
 })
