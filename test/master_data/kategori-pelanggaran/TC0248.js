@@ -14,13 +14,13 @@ describe('MASTER DATA KATEGORI PELANGGARAN', function() {
   after(async function() {
     await driver.quit();
   })
-  it('[Kategori Pelanggaran] Administrator dapat melakukan pencarian Kategori Pelanggaran berdasarkan kata yang sesuai ', async function() {
+  it('[Kategori Pelanggaran] Administrator dapat menambahkan Kategori Pelanggaran ', async function() {
     await driver.findElement(By.css("#username")).sendKeys('doni007');
     await driver.findElement(By.css("#password")).sendKeys('secret');
     await driver.findElement(By.css("button[type='submit']")).click()
     await driver.sleep(4500);   
     
-    let dashboard = await driver.wait(until.elementLocated(By.css('h1[class="font-bold text-lg my-4"]'))).getText();
+    let dashboard = await driver.findElement(By.css('h1[class="font-bold text-lg my-4"]')).getText();
     expect(dashboard).to.equal('Dashboard')
 
     //Select Master Data on Sidebar
@@ -34,20 +34,20 @@ describe('MASTER DATA KATEGORI PELANGGARAN', function() {
     //Expect: There is title 'List Kategori Pelanggaran' 
     let list = await driver.findElement(By.css('h2[class="text-lg font-medium mr-auto flex-none"]')).getText();
     expect(list).to.equal('List Kategori Pelanggaran')
+    
+    // expect button insert
+    let button_insert = await driver.wait(until.elementLocated(By.css("button[class='btn bg-green-600 text-white w-left']")));
+    expect(button_insert).to.exist;
 
-    let first_row = await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr/td[3]"));
-    expect(first_row).to.exist;
-    let keyword = await first_row.getText();
+    // insert new data
+    await button_insert.click();
+    await driver.wait(until.elementLocated(By.id("modal-create")));
+    
+    let input = await driver.wait(until.elementLocated(By.name('kategori_pelanggaran')));
 
+    input.sendKeys('Hukuman Pekerjaan Sosial', Key.ENTER);
 
-    // search data first row 
-    let search = await driver.findElement(By.name('search'));
-    await search.sendKeys(keyword, Key.ENTER);
-    await driver.sleep(3000);
-
-    // expect first row contains keyword
-    let search_data = await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr/td[3]")).getText();
-    expect(search_data).to.contains(keyword);
+    await driver.wait(until.elementsLocated(By.xpath("//p[contains(text(), 'Data berhasil disimpan')]")));
 
   })
 })

@@ -14,7 +14,7 @@ describe('MASTER DATA KATEGORI PELANGGARAN', function() {
   after(async function() {
     await driver.quit();
   })
-  it('[Kategori Pelanggaran] Administrator dapat melakukan pencarian Kategori Pelanggaran berdasarkan kata yang sesuai ', async function() {
+  it('[Kategori Pelanggaran] Administrator dapat menghapus Kategori Pelanggaran', async function() {
     await driver.findElement(By.css("#username")).sendKeys('doni007');
     await driver.findElement(By.css("#password")).sendKeys('secret');
     await driver.findElement(By.css("button[type='submit']")).click()
@@ -34,20 +34,34 @@ describe('MASTER DATA KATEGORI PELANGGARAN', function() {
     //Expect: There is title 'List Kategori Pelanggaran' 
     let list = await driver.findElement(By.css('h2[class="text-lg font-medium mr-auto flex-none"]')).getText();
     expect(list).to.equal('List Kategori Pelanggaran')
-
-    let first_row = await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr/td[3]"));
-    expect(first_row).to.exist;
-    let keyword = await first_row.getText();
-
-
-    // search data first row 
+    
+    // search data pppk
     let search = await driver.findElement(By.name('search'));
-    await search.sendKeys(keyword, Key.ENTER);
+    await search.sendKeys('Hukuman Pekerjaan Sosial', Key.ENTER);
     await driver.sleep(3000);
 
-    // expect first row contains keyword
-    let search_data = await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr/td[3]")).getText();
-    expect(search_data).to.contains(keyword);
+    // expect first row == Hukuman Pekerjaan Sosial
+    let kategori_pelanggaran = await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr/td[3]")).getText();
+    expect(kategori_pelanggaran).to.equal('Hukuman Pekerjaan Sosial');
 
+    // expect button delete
+    let button_delete = await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr/td[4]/div/button[3]"));
+    expect(button_delete).to.exist;
+
+    await button_delete.click();
+    await driver.sleep(3000);
+
+    // delete validation
+    await driver.wait(until.elementLocated(By.id("modal-delete-confirmation")));
+    // expect text for validation
+    let validate_txt = await driver.findElement(By.css('#modal-delete-confirmation .text-slate-500')).getText();
+    expect(validate_txt).to.equal('Apakah yakin ingin menghapus nama kategori pelanggaran '+ kategori_pelanggaran +' ?');
+
+    // search btn delete 
+    let btn_confirm = await driver.findElement(By.xpath('//*[@id="modal-delete-confirmation"]/div/div/div/div[2]/button[2]'));
+    expect(btn_confirm).to.exist;
+    
+    await btn_confirm.click();
+    await driver.wait(until.elementsLocated(By.xpath("//p[contains(text(), 'Data berhasil dihapus')]")));
   })
 })

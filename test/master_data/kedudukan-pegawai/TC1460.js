@@ -18,7 +18,7 @@ describe('MASTER DATA KEDUDUKAN PEGAWAI', function() {
     await driver.findElement(By.css("#username")).sendKeys('doni007');
     await driver.findElement(By.css("#password")).sendKeys('secret');
     await driver.findElement(By.css("button[type='submit']")).click()
-    await driver.sleep(4500);   
+    await driver.sleep(5000);   
     
     let dashboard = await driver.findElement(By.css('h1[class="font-bold text-lg my-4"]')).getText();
     expect(dashboard).to.equal('Dashboard')
@@ -52,5 +52,9 @@ describe('MASTER DATA KEDUDUKAN PEGAWAI', function() {
     let button_delete = await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr[1]/td[4]/div[1]/button[3]"));
     expect(button_delete).to.exist;
 
+    let first_row = await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr[1]/td[1]"));
+    expect(first_row).to.exist;
+    let number = await first_row.getText();
+    expect(number).to.equal('1');
   })
 })

@@ -49,7 +49,10 @@ describe('MASTER DATA KELURAHAN', function() {
     expect(button_edit).to.exist;
     let button_delete = await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr/td[5]/div/button[3]"));
     expect(button_delete).to.exist;
-    
 
+    let number_col = await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr[1]/td[1]"));
+    expect(number_col).to.exist;
+    let number = await number_col.getText();
+    expect(number).to.equal('1');
   })
 })
