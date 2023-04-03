@@ -2,7 +2,7 @@ const { Builder, By, Key, until } = require('selenium-webdriver');
 var expect = require('chai').expect;
 require('chromedriver')
 
-describe('MASTER DATA AGAMA', function() {
+describe('MASTER DATA BANK', function() {
  
   before(async function() {
     driver = await new Builder().forBrowser('chrome').build();
@@ -13,7 +13,7 @@ describe('MASTER DATA AGAMA', function() {
   after(async function() {
     await driver.quit();
   })
-  it('Dapat menambahkan data agama berdasarkan kata kunci yang sesuai', async function() {
+  it('Dapat menambahkan data Bank berdasarkan kata kunci yang sesuai', async function() {
     await driver.findElement(By.css("#username")).sendKeys('doni007');
     await driver.findElement(By.css("#password")).sendKeys('secret');
     await driver.findElement(By.css("button[type='submit']")).click()
@@ -21,11 +21,11 @@ describe('MASTER DATA AGAMA', function() {
     // halaman list data Agama
     await driver.wait(until.elementsLocated(By.xpath("//h1[contains(text(), 'Dashboard')]")));
     await driver.findElement(By.linkText("Master Data")).click();
-    var ele = driver.wait(until.elementLocated(By.linkText("Agama")));
+    var ele = driver.wait(until.elementLocated(By.linkText("Bank")));
     await ele.click();
 
-    // mencari data Agama
-    var search = "Agama yang belum ada" ;
+    // mencari data Bank
+    var search = "Bank yang belum ada" ;
     var ele = driver.wait(until.elementLocated(By.name("search")));
     await ele.sendKeys(search);
     await ele.sendKeys(Key.ENTER);

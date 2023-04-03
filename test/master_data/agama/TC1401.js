@@ -9,7 +9,6 @@ describe('MASTER DATA AGAMA', function() {
     vars = {}
     await driver.get("https://simpatik-fe.merapi.javan.id/login");
     await driver.manage().window().maximize();
-    await driver.manage().window().setRect({ width: 1680, height: 956 });
   })
   after(async function() {
     await driver.quit();
@@ -25,15 +24,10 @@ describe('MASTER DATA AGAMA', function() {
     var ele = driver.wait(until.elementLocated(By.linkText("Agama")));
     await ele.click();
 
-    // mencari data Agama
-    var search = "Agama yang belum ada" ;
-    var ele = driver.wait(until.elementLocated(By.name("search")));
-    await ele.sendKeys(search);
-    await ele.sendKeys(Key.ENTER);
-    await driver.wait(until.elementLocated(By.xpath("//td[contains(text(), '%d')]", search)));
-
     // detail data Agama
-    
+    // var ele = driver.wait(until.elementLocated(By.xpath("//tbody/tr/td[4]/div/button[1]")));
+    // await ele.click();
+    // await driver.sleep(3000);
 
   })
 })
