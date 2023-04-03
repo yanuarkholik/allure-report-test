@@ -2,7 +2,7 @@ const { Builder, By, Key, until } = require('selenium-webdriver');
 var expect = require('chai').expect;
 require('chromedriver')
 
-describe('MASTER DATA AGAMA', function() {
+describe('MASTER DATA BERKAS', function() {
  
   before(async function() {
     driver = await new Builder().forBrowser('chrome').build();
@@ -13,22 +13,23 @@ describe('MASTER DATA AGAMA', function() {
   after(async function() {
     await driver.quit();
   })
-  it('Dapat menambahkan data agama berdasarkan kata kunci yang sesuai', async function() {
+  it('Dapat tambah data sub menu Berkas yang sudah ada', async function() {
     await driver.findElement(By.css("#username")).sendKeys('doni007');
     await driver.findElement(By.css("#password")).sendKeys('secret');
     await driver.findElement(By.css("button[type='submit']")).click()
     
-    // halaman list data Agama
+    // halaman list data Berkas
     await driver.wait(until.elementsLocated(By.xpath("//h1[contains(text(), 'Dashboard')]")));
     await driver.findElement(By.linkText("Master Data")).click();
-    var ele = driver.wait(until.elementLocated(By.linkText("Agama")));
+    var ele = driver.wait(until.elementLocated(By.linkText("Berkas")));
     await ele.click();
 
-    // mencari data Agama
-    var search = "Agama yang belum ada" ;
-    var ele = driver.wait(until.elementLocated(By.name("search")));
-    await ele.sendKeys(search);
-    await ele.sendKeys(Key.ENTER);
-    await driver.wait(until.elementLocated(By.xpath("//td[contains(text(), '%d')]", search)));
+    // tambah data Berkas
+    var berkas = "Berkas yang belum ada";
+    await driver.findElement(By.css(".bg-green-600")).click();
+    var ele = driver.wait(until.elementLocated(By.name("nama_berkas")));
+    await ele.sendKeys(berkas);
+    await driver.findElement(By.css("button[data-btn='save']")).click();
+    await driver.wait(until.elementsLocated(By.xpath("//p[contains(text(), 'sudah ada')]")));
   })
 })

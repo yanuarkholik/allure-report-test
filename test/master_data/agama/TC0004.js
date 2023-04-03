@@ -13,22 +13,23 @@ describe('MASTER DATA AGAMA', function() {
   after(async function() {
     await driver.quit();
   })
-  it('Dapat menambahkan data agama berdasarkan kata kunci yang sesuai', async function() {
+  it('Dapat tambah data sub menu Agama dengan inputan kosong', async function() {
     await driver.findElement(By.css("#username")).sendKeys('doni007');
     await driver.findElement(By.css("#password")).sendKeys('secret');
     await driver.findElement(By.css("button[type='submit']")).click()
     
-    // halaman list data Agama
+    // halaman list data Bank
     await driver.wait(until.elementsLocated(By.xpath("//h1[contains(text(), 'Dashboard')]")));
     await driver.findElement(By.linkText("Master Data")).click();
-    var ele = driver.wait(until.elementLocated(By.linkText("Agama")));
+    var ele = driver.wait(until.elementLocated(By.linkText("Bank")));
     await ele.click();
 
-    // mencari data Agama
-    var search = "Agama yang belum ada" ;
-    var ele = driver.wait(until.elementLocated(By.name("search")));
-    await ele.sendKeys(search);
-    await ele.sendKeys(Key.ENTER);
-    await driver.wait(until.elementLocated(By.xpath("//td[contains(text(), '%d')]", search)));
+    // tambah data bank
+    var bank = "  ";
+    await driver.findElement(By.css(".bg-green-600")).click();
+    var ele = driver.wait(until.elementLocated(By.name("nama_bank")));
+    await ele.sendKeys(bank);
+    await driver.findElement(By.css("button[data-btn='save']")).click();
+    await driver.wait(until.elementsLocated(By.xpath("/*[contains(text(), 'Agama wajib diisi.')]")));
   })
 })
