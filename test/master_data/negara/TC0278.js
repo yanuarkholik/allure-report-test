@@ -10,7 +10,7 @@ describe ('SIMPATIK', function() {
   after(async function() {
     await driver.sleep(3000);
   });
-  it('KOTA', async function() {
+  it('NEGARA', async function() {
     await driver.get("https://simpatik-fe.merapi.javan.id/login");
     await driver.manage().window().maximize();
     await driver.findElement(By.id("username")).sendKeys("doni007");
@@ -23,24 +23,19 @@ describe ('SIMPATIK', function() {
     //Pilih Menu Master Data
     await driver.findElement(By.xpath("//*[@class='py-5 md:py-0']/nav/ul/li[4]/a/div/div")).click();
     await driver.sleep(3000);
-    //Pilih Sub Menu Kota
-    await driver.findElement(By.xpath("//*[@class='py-5 md:py-0']/nav/ul/li[4]/ul/li[23]/a")).click();
+    //Pilih Sub Menu Negara
+    await driver.findElement(By.xpath("//*[@class='py-5 md:py-0']/nav/ul/li[4]/ul/li[24]/a")).click();
     await driver.sleep(3000);
     let list = await driver.findElement(By.css('h2[class="text-lg font-medium mr-auto flex-none"]')).getText();
-    expect(list).to.equal('List Kota')
+    expect(list).to.equal('List Negara')
     await driver.sleep(3000);
-    //Tambah Kota
-    await driver.findElement(By.css("button[class='btn bg-green-600 text-white w-left']")).click()
-    await driver.sleep(3000);
-    await driver.findElement(By.xpath("//*[@id='modal-create']/div/div/div/form/div/div/div/div")).click();
+    //Cari Negara dengan Keyword yang sesuai
+    await driver.findElement(By.className("form-control px-10")).sendKeys("Indonesia");
     await driver.sleep(1000);
-    await driver.findElement(By.id("tomselect-1-opt-4")).click();
+    await driver.findElement(By.className("btn btn-primary shadow-md")).click();
     await driver.sleep(1000);
-    await driver.findElement(By.name("kota")).sendKeys("Abepura", Key.RETURN);
-    await driver.sleep(1000);
-    await driver.findElement(By.className("btn btn-primary md:w-auto w-[48%]")).click();
-    await driver.sleep(1000);
-    // Alert berhasil tambah kota
-    await driver.findElements(By.xpath("p[contains(text(), 'Data berhasil disimpan')]"));
+    //
+    let konfirmasiPencarian = await driver.findElement(By.xpath('/html/body/div[5]/div/div[2]/div[3]/div/div/table/tbody/tr/td[3]')).getText();
+    expect(konfirmasiPencarian).to.equal('Indonesia');
   });
 });
