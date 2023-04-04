@@ -30,7 +30,8 @@ describe('MASTER DATA KATEGORI PELANGGARAN', function() {
     await driver.sleep(1000);
     
     //Select Menu Kategori Pelanggaran
-    await driver.findElement(By.xpath("//*[@class='py-5 md:py-0']/nav/ul/li[4]/ul/li[22]/a")).click();
+    await driver.findElement(By.linkText("Kategori Pelanggaran")).click();
+    // await driver.findElement(By.xpath("//*[@class='py-5 md:py-0']/nav/ul/li[4]/ul/li[22]/a")).click();
     await driver.sleep(2000);
 
     //Expect: There is title 'List Kategori Pelanggaran' 

@@ -28,7 +28,8 @@ describe('MASTER DATA KELURAHAN', function() {
     await driver.sleep(1000);
     
     //Select Menu Kelurahan
-    await driver.findElement(By.xpath("//*[@class='py-5 md:py-0']/nav/ul/li[4]/ul/li[21]/a")).click();
+    await driver.findElement(By.linkText("Kelurahan")).click();
+    // await driver.findElement(By.xpath("//*[@class='py-5 md:py-0']/nav/ul/li[4]/ul/li[21]/a")).click();
     await driver.sleep(2000);
 
     //Expect: There is title 'List Kelurahan' 
