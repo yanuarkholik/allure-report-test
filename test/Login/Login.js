@@ -31,7 +31,7 @@ async function login (user,pswd, sendria)
   const originalWindow = await driver.getWindowHandle();
   await driver.switchTo().newWindow('window');
   await driver.get('https://sendria.merapi.javan.id/');
-  await driver.sleep(1000);
+  await driver.sleep(5000);
   var ele = driver.wait(until.elementLocated(By.xpath(`//td[contains(text(), '${user}')]`)));
   await ele.click();
   await driver.switchTo().frame(driver.findElement(By.id('message-body')));

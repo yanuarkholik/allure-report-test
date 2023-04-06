@@ -6,11 +6,9 @@ const loginModule = require('../../login/login.js');
 describe('XL Single Approval', function() {
  
   before(async function() {
-    let url = process.env.URL_Cloud;
-    let user = process.env.Admin2_Cloud_EMAIL;
-    let pswd = process.env.Admin2_Cloud_PASSWORD;
-    let sendria = process.env.URL_Sendria;
-    await loginModule.login(user,pswd, url, sendria);
+    let user = process.env.user1;
+    let pswd = process.env.pswd1;
+    await loginModule.login(user,pswd);
   })
   after(async function() {
     await driver.sleep(3000);

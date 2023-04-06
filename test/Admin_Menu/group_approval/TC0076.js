@@ -15,7 +15,7 @@ describe('XL Single Approval', function() {
   })
   it('Dapat tambah data approval pada halaman Group Approval', async function() {
   
-    /* Dapat menampilkan halaman Master Signature 
+    /* Dapat tambah data approval pada halaman Group Approval
       * Login sebagai Admin Cloud
       * Pilih menu Admin Menu
       * Pilih sub menu Group Approval
