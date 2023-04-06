@@ -1,33 +1,31 @@
-const { Builder, By, Key, until } = require('selenium-webdriver');
-var expect = require('chai').expect;
-require('chromedriver')
+const { By, Key, until } = require('selenium-webdriver');
+require('chromedriver');
+const loginModule = require('../../login/login.js');
 
 describe('XL Single Approval', function() {
  
   before(async function() {
-    driver = await new Builder().forBrowser('chrome').build();
-    vars = {}
+    let user = process.env.Admin2_Cloud_EMAIL;
+    let pswd = process.env.Admin2_Cloud_PASSWORD;
+    await loginModule.login(user,pswd);
   })
   after(async function() {
     await driver.sleep(3000);
     await driver.quit();
   })
   it('Create Signature', async function() {
-    let url = process.env.URL_Cloud;
-    let user = process.env.Admin_Cloud_EMAIL;
-    let pswd = process.env.Admin_Cloud_PASSWORD;
-    await driver.get(url);
-    await driver.sleep(2000);
-    await driver.manage().window().maximize();
-    await driver.sleep(2000);
-    await driver.findElement(By.xpath('//*[@id="kt_login"]/div[2]/app-login/div/div[2]/div/button[2]')).click();
-    await driver.sleep(3000);
     
-    await driver.findElement(By.css("#email")).sendKeys(user);
-    await driver.findElement(By.css("#exampleInputPassword1")).sendKeys(pswd);
-    await driver.findElement(By.css("#kt_login > div.h-100 > app-login > div > div.col-12.col-md-6.d-flex.align-items-center.justify-content-end > div > form > button")).click();
-    await driver.sleep(2000);
-    // Master Signature
+    /* Dapat tambah data Master Signature 
+      * Login sebagai Admin Cloud
+      * Pilih menu Admin Menu
+      * Pilih sub menu Master Signature
+      * Klik tombol Add Signature
+      * Isi form Form Signature
+      * Klik tombol Submit
+      * Tampil notifikasi sukses
+      * */
+
+    let url = process.env.URL_Cloud;
     await driver.get(url+"user");
     await driver.sleep(7000);
     await driver.findElement(By.css(".btn-primary:nth-child(1)")).click();
