@@ -13,7 +13,7 @@ describe('MASTER DATA BANK', function() {
   after(async function() {
     await driver.quit();
   })
-  it('Dapat membersihkan kolom search bar setelah melakukan pencarian data sub menu Bank', async function() {
+  it('Dapat hapus data sub menu Bank', async function() {
     await driver.findElement(By.css("#username")).sendKeys('doni007');
     await driver.findElement(By.css("#password")).sendKeys('secret');
     await driver.findElement(By.css("button[type='submit']")).click()
@@ -24,23 +24,16 @@ describe('MASTER DATA BANK', function() {
     var ele = driver.wait(until.elementLocated(By.linkText("Bank")));
     await ele.click();
 
-    // mencari data Bank
-    var search = "Bank yang belum ada" ;
-    var ele = driver.wait(until.elementLocated(By.name("search")));
-    await ele.sendKeys(search);
-    await ele.sendKeys(Key.ENTER);
+    // hapus data Bank
+    var id = 1;
+    var ele = driver.wait(until.elementLocated(By.xpath(`//td[contains(@class, 'hidden') and contains(text(), '${id}')]/following::td`)));
+    var bank = await ele.getText();
+    var ele = driver.wait(until.elementLocated(By.xpath(`//button[@*="confirmDelete('${id}')"]`)));
+    await ele.click();
+    await driver.wait(until.elementLocated(By.xpath(`//div[@id='modal-delete-confirmation']//span[contains(text(), '${bank}')]`)));
+    var ele = driver.wait(until.elementLocated(By.xpath(`//button[@*="delete('${id}')"]`)))
+    await ele.click();
 
-    // membersigkan search bar
-    await driver.findElement(By.xpath("//button[@type='reset']")).click();
-
-    // mencari data Bank
-    var search = "Bank yang tidak ada" ;
-    var ele = driver.wait(until.elementLocated(By.name("search")));
-    await ele.sendKeys(search);
-    await ele.sendKeys(Key.ENTER);
-
-    // membersigkan search bar
-    await driver.findElement(By.xpath("//button[@type='reset']")).click();
-
+    await driver.wait(until.elementLocated(By.xpath('//p[contains(text(), "Data berhasil dihapus")]')));
   })
 })

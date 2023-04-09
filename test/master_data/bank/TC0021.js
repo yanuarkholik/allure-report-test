@@ -18,7 +18,7 @@ describe('MASTER DATA BANK', function() {
     await driver.findElement(By.css("#password")).sendKeys('secret');
     await driver.findElement(By.css("button[type='submit']")).click()
     
-    // halaman list data Agama
+    // halaman list data Bank
     await driver.wait(until.elementsLocated(By.xpath("//h1[contains(text(), 'Dashboard')]")));
     await driver.findElement(By.linkText("Master Data")).click();
     var ele = driver.wait(until.elementLocated(By.linkText("Bank")));
