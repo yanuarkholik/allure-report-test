@@ -24,15 +24,15 @@ describe('MASTER DATA AGAMA', function() {
     var ele = driver.wait(until.elementLocated(By.linkText("Agama")));
     await ele.click();
 
-    // mencari data Agama
-    var search = "Agama yang belum ada" ;
-    var ele = driver.wait(until.elementLocated(By.name("search")));
-    await ele.sendKeys(search);
-    await ele.sendKeys(Key.ENTER);
-    await driver.wait(until.elementLocated(By.xpath("//td[contains(text(), '%d')]", search)));
-
     // detail data Agama
-    
-
+    var id = 5;
+    var ele = driver.wait(until.elementLocated(By.xpath(`//td[contains(@class, 'hidden') and contains(text(), '${id}')]/following::td`)));
+    var agama = await ele.getText();
+    var ele = driver.wait(until.elementLocated(By.xpath(`//button[@*="view('${id}')"]`)));
+    await ele.click();
+   
+    await driver.wait(until.elementLocated(By.xpath("//h3[contains(text(), 'Detail Agama')]")));
+    await driver.findElement(By.xpath(`//dd[contains(text(), '${id}')]`));
+    await driver.findElement(By.xpath(`//dd[contains(text(), '${agama}')]`));
   })
 })
