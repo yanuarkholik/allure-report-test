@@ -24,7 +24,7 @@ describe('MASTER DATA DEPARTEMEN', function() {
     var ele = driver.wait(until.elementLocated(By.linkText("Departemen")));
     await ele.click();
 
-    // mengurutkan data Departemen secara descending
+    // urutkan data Departemen secara descending
     const sortList = ['id', 'kode', 'nama', 'is_active'];
     for (let i = 0; i < sortList.length; i++) {
         let list = sortList[i];
