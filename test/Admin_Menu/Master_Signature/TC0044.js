@@ -1,17 +1,19 @@
 const { By, Key, until } = require('selenium-webdriver');
 require('chromedriver');
+var expect = require('chai').expect;
 const loginModule = require('../../login/login.js');
 
 describe('XL Single Approval', function() {
  
   before(async function() {
-    let user = process.env.Admin2_Cloud_EMAIL;
-    let pswd = process.env.Admin2_Cloud_PASSWORD;
+    let user = process.env.user1;
+    let pswd = process.env.pswd1;
     await loginModule.login(user,pswd);
   })
   after(async function() {
     await driver.sleep(3000);
     await driver.quit();
+    await loginModule.tanggal();
   })
   it('Delete Signature', async function() {
 
@@ -24,12 +26,13 @@ describe('XL Single Approval', function() {
 
     await driver.get("https://approval-fe.dev.alurkerja.com/user");
     await driver.sleep(10000);
-    
-    await driver.findElement(By.xpath(`//*[@id="kt_content"]/div/div/app-user/div/div[2]/div[2]/table/tbody/tr[2]/td[6]/a[2]`)).click();
+    await driver.findElement(By.xpath('//*[@id="kt_content"]/div/div/app-user/div/div[2]/div[1]/div[2]/div/div[3]/div/input')).sendKeys('ardel');
+    await driver.sleep(2000);
+    await driver.findElement(By.xpath(`//*[@id="kt_content"]/div/div/app-user/div/div[2]/div[2]/table/tbody/tr[1]/td[6]/a[2]`)).click();
     await driver.sleep(3000);
-    let btnDelete = await driver.findElement(By.xpath('//*[@id="kt_body"]/ngb-modal-window/div/div/app-delete-user-modal/div[2]/span')).getText();
     await driver.findElement(By.xpath('//*[@id="kt_body"]/ngb-modal-window/div/div/app-delete-user-modal/div[3]/div/button[2]')).click();
-    // await driver.sleep(2000);
-    expect(btnDelete).to.contains("Are you sure to permanently delete this Signature?");
+    await driver.sleep(1000);
+    let btnDelete = await driver.findElement(By.xpath('//*[@id="kt_body"]/ngb-modal-window/div/div/app-delete-user-modal/div[3]/span')).getText();
+    expect(btnDelete).to.contains("Signature is deleting");
   })
 })

@@ -12,6 +12,7 @@ describe('XL Single Approval', function() {
   })
   after(async function() {
     await driver.sleep(3000);
+    await loginModule.tanggal();
     await driver.quit();
   })
   it('Show Master Signature ', async function() {
