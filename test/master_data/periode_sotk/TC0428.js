@@ -11,7 +11,7 @@ describe('simpatik', function() {
   after(async function() {
     await driver.quit();
   })
-  it('Administrator dapat melihat detail Periode SOTK', async function() {
+  it('Administrator dapat unduh file Periode SOTK', async function() {
     await driver.get("https://simpatik-fe.merapi.javan.id");
     await driver.manage().window().maximize();
     await driver.manage().window();
@@ -26,7 +26,7 @@ describe('simpatik', function() {
     // klik menu STOK
     await driver.findElement(By.xpath("/html/body/nav/ul[1]/li[4]/ul/li[36]/a")).click();
     await driver.sleep(1000);
-    //Klik tambah periode STOK
+    //Klik unduh STOK
     await driver.findElement(By.css('a[class="tooltip btn btn-primary"]')).click();
     await driver.sleep(1000);
   })
