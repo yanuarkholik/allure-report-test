@@ -14,7 +14,7 @@ describe('MASTER DATA KATEGORI PELANGGARAN', function() {
     // await driver.manage().window().setRect({ width: 1680, height: 956 });
   })
   after(async function() {
-    // await driver.quit();
+    await driver.quit();
   })
   it('[Kategori Pelanggaran] Administrator dapat mengurutkan Kategori Pelanggaran secara descending ', async function() {
     await driver.findElement(By.css("#username")).sendKeys('doni007');
@@ -48,7 +48,9 @@ describe('MASTER DATA KATEGORI PELANGGARAN', function() {
     expect(table).to.exist;
     
     await driver.findElement(By.xpath("//table[@class='table m-b-0 table-striped text-xs md:text-sm']/thead/tr/th[2]")).click();
+    await driver.sleep(2000);
     await driver.findElement(By.xpath("//table[@class='table m-b-0 table-striped text-xs md:text-sm']/thead/tr/th[2]")).click();
+    await driver.sleep(2000);
     let first_id_row = await driver.findElement(By.xpath("(//div[@class='box']/div/div/table/tbody/tr[1]/td[2])")).getText();
     expect(first_id_row).to.not.equal('1');
     

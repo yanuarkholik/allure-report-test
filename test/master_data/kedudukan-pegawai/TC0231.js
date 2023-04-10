@@ -14,7 +14,7 @@ describe('MASTER DATA KEDUDUKAN PEGAWAI', function() {
     // await driver.manage().window().setRect({ width: 1680, height: 956 });
   })
   after(async function() {
-    // await driver.quit();
+    await driver.quit();
   })
   it('[Kedudukan Pegawai] Administrator dapat mengurutkan Kedudukan Pegawai secara ascending ', async function() {
     await driver.findElement(By.css("#username")).sendKeys('doni007');
@@ -48,6 +48,7 @@ describe('MASTER DATA KEDUDUKAN PEGAWAI', function() {
     expect(table).to.exist;
     
     await driver.findElement(By.xpath("//table[@class='table m-b-0 table-striped text-xs md:text-sm']/thead/tr/th[2]")).click();
+    await driver.sleep(2000);
     let smallest_id = await driver.findElement(By.xpath("(//div[@class='box']/div/div/table/tbody/tr[1]/td[2])")).getText();
     expect(smallest_id).to.equal('1');
     
