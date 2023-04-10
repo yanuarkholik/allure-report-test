@@ -28,14 +28,15 @@ describe('MASTER DATA KEDUDUKAN PEGAWAI', function() {
     await driver.sleep(1000);
     
     //Select Menu Kedudukan Pegawai
-    await driver.findElement(By.xpath("//*[@class='py-5 md:py-0']/nav/ul/li[4]/ul/li[20]/a")).click();
+    await driver.findElement(By.linkText("Kedudukan Pegawai")).click();
+    // await driver.findElement(By.xpath("//*[@class='py-5 md:py-0']/nav/ul/li[4]/ul/li[20]/a")).click();
     await driver.sleep(2000);
 
     //Expect: There is title 'List Kedudukan Pegawai' 
     let list = await driver.findElement(By.css('h2[class="text-lg font-medium mr-auto flex-none"]')).getText();
     expect(list).to.equal('List Kedudukan Pegawai')
 
-    // search first row
+    // search second row
     let second_row = await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr[2]/td[3]"));
     expect(second_row).to.exist;
     let keyword = await second_row.getText();

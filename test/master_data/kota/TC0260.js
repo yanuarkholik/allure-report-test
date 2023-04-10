@@ -40,7 +40,7 @@ describe ('SIMPATIK', function() {
     await driver.sleep(1000);
     await driver.findElement(By.className("btn btn-primary md:w-auto w-[48%]")).click();
     await driver.sleep(1000);
-    //Alert berhasil tambah kota
+    // Alert berhasil tambah kota
     await driver.findElements(By.xpath("p[contains(text(), 'Data berhasil disimpan')]"));
   });
 });

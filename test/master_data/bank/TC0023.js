@@ -18,13 +18,13 @@ describe('MASTER DATA BANK', function() {
     await driver.findElement(By.css("#password")).sendKeys('secret');
     await driver.findElement(By.css("button[type='submit']")).click()
     
-    // halaman list data Agama
+    // halaman list data Bank
     await driver.wait(until.elementsLocated(By.xpath("//h1[contains(text(), 'Dashboard')]")));
     await driver.findElement(By.linkText("Master Data")).click();
     var ele = driver.wait(until.elementLocated(By.linkText("Bank")));
     await ele.click();
 
-    // mencari data Agama
+    // mencari data Bank
     var search = "Bank yang belum ada" ;
     var ele = driver.wait(until.elementLocated(By.name("search")));
     await ele.sendKeys(search);
@@ -33,7 +33,7 @@ describe('MASTER DATA BANK', function() {
     // membersigkan search bar
     await driver.findElement(By.xpath("//button[@type='reset']")).click();
 
-    // mencari data Agama
+    // mencari data Bank
     var search = "Bank yang tidak ada" ;
     var ele = driver.wait(until.elementLocated(By.name("search")));
     await ele.sendKeys(search);

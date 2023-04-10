@@ -24,7 +24,7 @@ describe('MASTER DATA AGAMA', function() {
     var ele = driver.wait(until.elementLocated(By.linkText("Bank")));
     await ele.click();
 
-    // tambah data bank
+    // tambah data agama
     var bank = "  ";
     await driver.findElement(By.css(".bg-green-600")).click();
     var ele = driver.wait(until.elementLocated(By.name("nama_bank")));

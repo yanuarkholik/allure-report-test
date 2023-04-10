@@ -37,8 +37,9 @@ describe('MASTER DATA DIKLAT', function() {
     await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr[1]/td[5]/div[1]/button[1]")).click();
     await driver.sleep(3000);
 
-    // Click button edit belum bisa diklik
-    await driver.findElement(By.xpath("//*[@class='py-5 md:py-0']/div[5]/div/div[2]/div[1]/div[3]/button[3]")).click();
+    // Click button edit 
+    // let button_edit = await driver.findElement(By.xpath("//*[@class='content']/div[2]/div[1]/div[3]/button[@class='btn btn-primary dark:bg-slate-800 w-full sm:w-auto']"));
+    await driver.findElement(By.className("btn btn-primary dark:bg-slate-800 w-full sm:w-auto")).click();
     await driver.sleep(2000);
 
     //Make changes as needed
