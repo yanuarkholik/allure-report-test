@@ -2,7 +2,7 @@ const { Builder, By, Key, until } = require('selenium-webdriver');
 var expect = require('chai').expect;
 require('chromedriver')
 
-describe('MASTER DATA KEDUDUKAN PEGAWAI', function() {
+describe('MASTER DATA KATEGORI PELANGGARAN', function() {
  
   before(async function() {
     driver = await new Builder().forBrowser('chrome').build();
@@ -14,7 +14,7 @@ describe('MASTER DATA KEDUDUKAN PEGAWAI', function() {
   after(async function() {
     await driver.quit();
   })
-  it('[Kedudukan Pegawai] Administrator dapat melakukan pencarian Kedudukan Pegawai berdasarkan kata yang sesuai ', async function() {
+  it('[Kategori Pelanggaran] Administrator dapat melakukan pencarian Kategori Pelanggaran berdasarkan kata yang tidak sesuai ', async function() {
     await driver.findElement(By.css("#username")).sendKeys('doni007');
     await driver.findElement(By.css("#password")).sendKeys('secret');
     await driver.findElement(By.css("button[type='submit']")).click()
@@ -27,28 +27,25 @@ describe('MASTER DATA KEDUDUKAN PEGAWAI', function() {
     await driver.findElement(By.xpath("//*[@class='py-5 md:py-0']/nav/ul/li[4]/a/div/div")).click();
     await driver.sleep(1000);
     
-    //Select Menu Kedudukan Pegawai
-    await driver.findElement(By.linkText("Kedudukan Pegawai")).click();
-    // await driver.findElement(By.xpath("//*[@class='py-5 md:py-0']/nav/ul/li[4]/ul/li[20]/a")).click();
+    //Select Menu Kategori Pelanggaran
+    await driver.findElement(By.linkText("Kategori Pelanggaran")).click();
+    // await driver.findElement(By.xpath("//*[@class='py-5 md:py-0']/nav/ul/li[4]/ul/li[22]/a")).click();
     await driver.sleep(2000);
 
-    //Expect: There is title 'List Kedudukan Pegawai' 
+    //Expect: There is title 'List Kategori Pelanggaran' 
     let list = await driver.findElement(By.css('h2[class="text-lg font-medium mr-auto flex-none"]')).getText();
-    expect(list).to.equal('List Kedudukan Pegawai')
+    expect(list).to.equal('List Kategori Pelanggaran')
 
-    let first_row = await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr/td[3]"));
-    expect(first_row).to.exist;
-    let keyword = await first_row.getText();
+    let keyword = "non existing existence";
 
-
-    // search data first row 
+    // search data 
     let search = await driver.findElement(By.name('search'));
     await search.sendKeys(keyword, Key.ENTER);
     await driver.sleep(3000);
 
-    // expect first row contains keyword
-    let nama_kedudukan = await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr/td[3]")).getText();
-    expect(nama_kedudukan).to.contains(keyword);
+    // expect result display no data
+    let res = await driver.wait(until.elementLocated(By.xpath("//tbody[@class='collection']/tr/td"))).getText();
+    expect(res).to.contains("Tidak ada data");
 
   })
 })
