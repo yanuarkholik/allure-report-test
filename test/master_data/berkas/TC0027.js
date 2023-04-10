@@ -2,7 +2,7 @@ const { Builder, By, Key, until } = require('selenium-webdriver');
 var expect = require('chai').expect;
 require('chromedriver')
 
-describe('MASTER DATA AGAMA', function() {
+describe('MASTER DATA BERKAS', function() {
  
   before(async function() {
     driver = await new Builder().forBrowser('chrome').build();
@@ -13,31 +13,31 @@ describe('MASTER DATA AGAMA', function() {
   after(async function() {
     await driver.quit();
   })
-  it('Dapat mengubah data sub menu Agama', async function() {
+  it('Dapat ubah data sub menu Berkas', async function() {
     await driver.findElement(By.css("#username")).sendKeys('doni007');
     await driver.findElement(By.css("#password")).sendKeys('secret');
     await driver.findElement(By.css("button[type='submit']")).click()
     
-    // halaman list data Agama
+    // halaman list data Berkas
     await driver.wait(until.elementsLocated(By.xpath("//h1[contains(text(), 'Dashboard')]")));
     await driver.findElement(By.linkText("Master Data")).click();
-    var ele = driver.wait(until.elementLocated(By.linkText("Agama")));
+    var ele = driver.wait(until.elementLocated(By.linkText("Berkas")));
     await ele.click();
 
-    // ubah data agama
-    var id = 5;
-    var agama = 'Agama yang sudah ada';
+    // uabh data Berkas
+    var id = 13;
+    var berkas = 'Berkas yang sudah ada';
     var ele = driver.wait(until.elementLocated(By.xpath(`//button[@*="edit('${id}')"]`)));
     await ele.click();
-    var ele = driver.wait(until.elementLocated(By.name('agama')));
+    var ele = driver.wait(until.elementLocated(By.name('nama_berkas')));
     await ele.clear();
-    await ele.sendKeys(agama);
+    await ele.sendKeys(berkas);
     await driver.findElement(By.xpath('//button[@*="update"]')).click();
 
     await driver.wait(until.elementLocated(By.xpath('//p[contains(text(), "Data berhasil diperbarui")]')));
     await driver.sleep(1000);
     var ele = driver.wait(until.elementLocated(By.xpath(`//td[contains(@class, 'hidden') and contains(text(), '${id}')]/following::td`)));
-    var agama1 = await ele.getText();
-    expect(agama1).to.equal(agama);
+    var berkas1 = await ele.getText();
+    expect(berkas1).to.equal(berkas);
   })
 })

@@ -13,7 +13,7 @@ describe('MASTER DATA AGAMA', function() {
   after(async function() {
     await driver.quit();
   })
-  it('Dapat melakukan perubahan pada data Agama pada halaman detail', async function() {
+  it('Dapat menghapus data sub menu Agama', async function() {
 
     /* */
     await driver.findElement(By.css("#username")).sendKeys('doni007');
@@ -26,29 +26,16 @@ describe('MASTER DATA AGAMA', function() {
     var ele = driver.wait(until.elementLocated(By.linkText("Agama")));
     await ele.click();
 
-    // detail data Agama
+    // hapus data Agama
     var id = 5;
     var ele = driver.wait(until.elementLocated(By.xpath(`//td[contains(@class, 'hidden') and contains(text(), '${id}')]/following::td`)));
     var agama = await ele.getText();
-    var ele = driver.wait(until.elementLocated(By.xpath(`//button[@*="view('${id}')"]`)));
+    var ele = driver.wait(until.elementLocated(By.xpath(`//button[@*="confirmDelete('${id}')"]`)));
     await ele.click();
-   
-    await driver.wait(until.elementLocated(By.xpath("//h3[contains(text(), 'Detail Agama')]")));
-    await driver.findElement(By.xpath(`//dd[contains(text(), '${id}')]`));
-    await driver.findElement(By.xpath(`//dd[contains(text(), '${agama}')]`));
-    await driver.findElement(By.xpath(`//button[@*="edit('${id}')"]`)).click();
-    
-    var ele = driver.wait(until.elementLocated(By.name('agama')));
-    var agama = 'Agama yang belum ada';
-    await ele.clear();
-    await ele.sendKeys(agama);
-    await driver.findElement(By.xpath('//button[@*="save"]')).click();
-    var ele = driver.wait(until.elementLocated(By.xpath('//button[@*="index"]')));
+    await driver.wait(until.elementLocated(By.xpath(`//div[@id='modal-delete-confirmation']//span[contains(text(), '${agama}')]`)));
+    var ele = driver.wait(until.elementLocated(By.xpath(`//button[@*="delete('${id}')"]`)))
     await ele.click();
-    await driver.sleep(1000);
-    var ele = driver.wait(until.elementLocated(By.xpath(`//td[contains(@class, 'hidden') and contains(text(), '${id}')]/following::td`)));
-    var agama1 = await ele.getText();
-    expect(agama1).to.equal(agama);
 
+    await driver.wait(until.elementLocated(By.xpath('//p[contains(text(), "Data berhasil dihapus")]')));
   })
 })
