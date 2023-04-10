@@ -11,7 +11,7 @@ describe('simpatik', function() {
   after(async function() {
     await driver.quit();
   })
-  it('Administrator dapat melihat detail Periode SOTK', async function() {
+  it('Administrator dapat menambahkan Periode SOTK', async function() {
     await driver.get("https://simpatik-fe.merapi.javan.id");
     await driver.manage().window().maximize();
     await driver.manage().window();
