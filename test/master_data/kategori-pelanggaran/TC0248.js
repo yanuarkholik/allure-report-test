@@ -2,7 +2,7 @@ const { Builder, By, Key, until } = require('selenium-webdriver');
 var expect = require('chai').expect;
 require('chromedriver')
 
-describe('MASTER DATA KEDUDUKAN PEGAWAI', function() {
+describe('MASTER DATA KATEGORI PELANGGARAN', function() {
  
   before(async function() {
     driver = await new Builder().forBrowser('chrome').build();
@@ -14,7 +14,7 @@ describe('MASTER DATA KEDUDUKAN PEGAWAI', function() {
   after(async function() {
     await driver.quit();
   })
-  it('[Kedudukan Pegawai] Administrator tidak dapat tambah Kedudukan Pegawai dengan inputan yang sama pada field Kedudukan Pegawai yang telah ada sebelumnya', async function() {
+  it('[Kategori Pelanggaran] Administrator dapat menambahkan Kategori Pelanggaran ', async function() {
     await driver.findElement(By.css("#username")).sendKeys('doni007');
     await driver.findElement(By.css("#password")).sendKeys('secret');
     await driver.findElement(By.css("button[type='submit']")).click()
@@ -27,19 +27,14 @@ describe('MASTER DATA KEDUDUKAN PEGAWAI', function() {
     await driver.findElement(By.xpath("//*[@class='py-5 md:py-0']/nav/ul/li[4]/a/div/div")).click();
     await driver.sleep(1000);
     
-    //Select Menu Kedudukan Pegawai
-    await driver.findElement(By.linkText("Kedudukan Pegawai")).click();
-    // await driver.findElement(By.xpath("//*[@class='py-5 md:py-0']/nav/ul/li[4]/ul/li[20]/a")).click();
+    //Select Menu Kategori Pelanggaran
+    await driver.findElement(By.linkText("Kategori Pelanggaran")).click();
+    // await driver.findElement(By.xpath("//*[@class='py-5 md:py-0']/nav/ul/li[4]/ul/li[22]/a")).click();
     await driver.sleep(2000);
 
-    //Expect: There is title 'List Kedudukan Pegawai' 
+    //Expect: There is title 'List Kategori Pelanggaran' 
     let list = await driver.findElement(By.css('h2[class="text-lg font-medium mr-auto flex-none"]')).getText();
-    expect(list).to.equal('List Kedudukan Pegawai')
-
-    // get the first row to find kedudukan name that already exists
-    let first_row = await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr[1]/td[3]"));
-    expect(first_row).to.exist;
-    let keyword = await first_row.getText();
+    expect(list).to.equal('List Kategori Pelanggaran')
     
     // expect button insert
     let button_insert = await driver.wait(until.elementLocated(By.css("button[class='btn bg-green-600 text-white w-left']")));
@@ -49,19 +44,11 @@ describe('MASTER DATA KEDUDUKAN PEGAWAI', function() {
     await button_insert.click();
     await driver.wait(until.elementLocated(By.id("modal-create")));
     
-    let input = await driver.wait(until.elementLocated(By.name('kedudukan_pegawai')));
-    expect(input).to.exist;
+    let input = await driver.wait(until.elementLocated(By.name('kategori_pelanggaran')));
 
-    await input.sendKeys(keyword);
+    input.sendKeys('Hukuman Pekerjaan Sosial', Key.ENTER);
 
-    let btn_submit = await driver.findElement(By.css("#modal-create > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > button:nth-child(2)"));
-    // let btn_submit = await driver.findElement(By.css("button[data-btn='save'][class='btn btn-primary md:w-auto w-[48%]']"));
-    expect(btn_submit).to.exist;
-    await btn_submit.click();
-    await driver.sleep(2000);
-    
-
-    await driver.wait(until.elementsLocated(By.xpath("//p[contains(text(), 'input kedudukan pegawai yang anda entrikan sudah ada')]")));
+    await driver.wait(until.elementsLocated(By.xpath("//p[contains(text(), 'Data berhasil disimpan')]")));
 
   })
 })

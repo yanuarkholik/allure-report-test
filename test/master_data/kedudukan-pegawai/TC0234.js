@@ -28,7 +28,8 @@ describe('MASTER DATA KEDUDUKAN PEGAWAI', function() {
     await driver.sleep(1000);
     
     //Select Menu Kedudukan Pegawai
-    await driver.findElement(By.xpath("//*[@class='py-5 md:py-0']/nav/ul/li[4]/ul/li[20]/a")).click();
+    await driver.findElement(By.linkText("Kedudukan Pegawai")).click();
+    // await driver.findElement(By.xpath("//*[@class='py-5 md:py-0']/nav/ul/li[4]/ul/li[20]/a")).click();
     await driver.sleep(2000);
 
     //Expect: There is title 'List Kedudukan Pegawai' 
@@ -37,7 +38,7 @@ describe('MASTER DATA KEDUDUKAN PEGAWAI', function() {
 
     let keyword = "non existing existence";
 
-    // search data pppk
+    // search data 
     let search = await driver.findElement(By.name('search'));
     await search.sendKeys(keyword, Key.ENTER);
     await driver.sleep(3000);
