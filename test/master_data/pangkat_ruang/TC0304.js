@@ -29,22 +29,12 @@ describe ('SIMPATIK', function() {
     let list = await driver.findElement(By.css('h2[class="text-lg font-medium mr-auto flex-none"]')).getText();
     expect(list).to.equal('List Pangkat Ruang')
     await driver.sleep(3000);
-    //Tambah Pangkat Ruanga
-    await driver.findElement(By.className("btn bg-green-600 text-white w-left")).click();
-    await driver.sleep(3000);
-    await driver.findElement(By.className('btn btn-primary md:w-auto w-[48%]')).click();
+    //Hapus Pangkat Ruang
+    await driver.findElement(By.xpath("/html/body/div[5]/div/div[2]/div[3]/div/div/table/tbody/tr[1]/td[7]/div/button[3]")).click();
     await driver.sleep(1000);
-    //Alert Kesalahan Input
-    await driver.findElements(By.xpath("p[contains(text(), 'Ada Kesalahan Input')]"));
-    await driver.sleep(3000);
-    //Mandatory
-    let mandatoryTeks = await driver.findElement(By.xpath('//*[@id="modal-create-body"]/form/div/div[1]/div/div')).getText();
-    expect(mandatoryTeks).to.equal('Teks wajib diisi.');
-    let mandatoryGolongan = await driver.findElement(By.xpath('//*[@id="modal-create-body"]/form/div/div[2]/div/div')).getText();
-    expect(mandatoryGolongan).to.equal('Golongan wajib diisi.');
-    let mandatoryIDruang = await driver.findElement(By.xpath('//*[@id="modal-create-body"]/form/div/div[3]/div/div')).getText();
-    expect(mandatoryIDruang).to.equal('ID Ruang wajib diisi.');
-    let mandatoryPangkat = await driver.findElement(By.xpath('//*[@id="modal-create-body"]/form/div/div[4]/div/div')).getText();
-    expect(mandatoryPangkat).to.equal('Pangkat wajib diisi.');
+    await driver.findElement(By.xpath('//*[@id="modal-delete-confirmation"]/div/div/div/div[2]/button[2]')).click();
+    await driver.sleep(1000);
+    //Alert Berhasil Ha[us Pangkat Ruang
+    await driver.findElements(By.xpath("p[contains(text(), 'Data berhasil dihapus')]"));
   });
 });
