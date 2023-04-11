@@ -48,6 +48,6 @@ describe ('SIMPATIK', function() {
     await driver.findElement(By.className('btn btn-primary md:w-auto w-[48%]')).click();
     await driver.sleep(1000);
     //Alert Berhasil Tambah Pangkat Ruang
-    await driver.findElements(By.xpath("input pangkat yang anda entrikan sudah ada')]"));
+    await driver.findElements(By.xpath("p[contains(text(), 'input pangkat yang anda entrikan sudah ada')]"));
   });
 });

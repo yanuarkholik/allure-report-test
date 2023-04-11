@@ -48,12 +48,12 @@ describe ('SIMPATIK', function() {
     await driver.findElement(By.className('btn btn-primary md:w-auto w-[48%]')).click();
     await driver.sleep(1000);
     //Alert Tambah Pangkat Ruang
-    await driver.findElements(By.xpath("Ada Kesalahan Input')]"));
-    await driver.sleep(1000);
+    await driver.findElements(By.xpath("p[contains(text(), 'Ada Kesalahan Input')]'"));
+    await driver.sleep(3000);
     //Mandatory Maksimal Karakter
     let mandatoryTeks = await driver.findElement(By.xpath('//*[@id="modal-create-body"]/form/div/div[1]/div/div')).getText();
     expect(mandatoryTeks).to.equal('Teks maksimal berisi 255 karakter.');
     let mandatoryPangkat = await driver.findElement(By.xpath('//*[@id="modal-create-body"]/form/div/div[4]/div/div')).getText();
-    expect(mandatoryPangkat).to.equal('PPangkat maksimal berisi 255 karakter.');
+    expect(mandatoryPangkat).to.equal('Pangkat maksimal berisi 255 karakter.');
   });
 });
