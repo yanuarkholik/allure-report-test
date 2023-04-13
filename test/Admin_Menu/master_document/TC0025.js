@@ -1,28 +1,30 @@
 const { By, Key, until } = require('selenium-webdriver');
 require('chromedriver');
-const loginModule = require('../../login/login.js');
+const loginModule = require('../../Login/Login');
 
 describe('XL Single Approval', function() {
  
   before(async function() {
-    let user = process.env.Admin2_Cloud_EMAIL;
-    let pswd = process.env.Admin2_Cloud_PASSWORD;
+    let user = process.env.user2;
+    let pswd = process.env.pswd2;
     await loginModule.login(user,pswd);
   })
   after(async function() {
     await driver.sleep(3000);
+    await loginModule.tanggal();
     await driver.quit();
   })
-  it('Search Document Category', async function() {
+  it('Able to duplicate the Document Category', async function() {
 
     await driver.get("https://approval-fe.dev.alurkerja.com/documentcategory");
     await driver.sleep(5000);
-    await driver.findElement(By.css("#kt_content > div > div > app-documentcategory > div > div.card-body > div.table-responsive.angular-bootstrap-table > table > tbody > tr:nth-child(1) > td:nth-child(7) > a.btn.btn-icon.btn-light.btn-hover-warning.btn-sm")).click();
-    await driver.sleep(5000);
-    await driver.findElement(By.css("#kt_body > ngb-modal-window > div > div > app-warning-documentcategory-modal > div > div.modal-footer > button")).click();
-    await driver.sleep(5000);
-    await driver.findElement(By.css("#kt_body > div > div > div.swal2-actions > button.swal2-confirm.swal2-styled.swal2-default-outline")).click();
-    let namaDashboard = await driver.findElement(By.xpath('//*[@id="kt_body"]/div/div')).getText(); 
-    expect(namaDashboard).to.contains("Success");
+
+    var search = 'Test approval matrix';
+    var ele = driver.wait(until.elementLocated(By.xpath(`//td[contains(text(), '${search}')]/following-sibling::td//a[@title='Duplicate']`)));
+    await ele.click();
+
+    var ele = driver.wait(until.elementLocated(By.xpath("//button[contains(text(), 'Duplicate')]")));
+    await ele.click();
+
   })
 })

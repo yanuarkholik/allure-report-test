@@ -1,6 +1,6 @@
 const { By, Key, until } = require('selenium-webdriver');
 require('chromedriver');
-const loginModule = require('../../login/login.js');
+const loginModule = require('../../Login/Login');
 
 describe('XL Single Approval', function() {
  
