@@ -5,13 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha -r dotenv/config --no-timeouts --reporter mocha-allure-reporter",
-<<<<<<< HEAD
-    "start": "allure open allure-report --port 8080",
+    "start": "allure serve allure-report --port 8080",
     "report": "allure generate allure-results --clean"
-=======
-    "report": "allure generate allure-results --clean && allure open allure-report --port 8080"
->>>>>>> 193875124f34e7a0d6b9fef6456e00e9d9b3ff01
-    
+
   },
   "keywords": [],
   "author": "",
