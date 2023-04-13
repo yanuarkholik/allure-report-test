@@ -11,9 +11,10 @@ describe('XL Single Approval', function() {
   })
   after(async function() {
     await driver.sleep(3000);
+    await loginModule.tanggal();
     await driver.quit();
   })
-  it('Dapat edit data approval pada halaman Group Approval', async function() {
+  it('Able to edit data Group Approval', async function() {
 
     /* Dapat edit data approval pada halaman Group Approval
       * Login sebagai Admin Cloud
@@ -28,12 +29,13 @@ describe('XL Single Approval', function() {
     //Group Approval
     await driver.get("https://approval-fe.dev.alurkerja.com/group-approval");
     await driver.sleep(7000);
-    await driver.findElement(By.xpath('//*[@id="kt_content"]/div/div/app-group-approval/div/div[2]/div[2]/table/tbody/tr[1]/td[5]/a[1]')).click();
-    await driver.sleep(3000);
+    await driver.findElement(By.xpath("//a[@*='Edit']")).click();
+    
     // Form Edit Group Approval
-    let input = await driver.findElement(By.xpath('//*[@id="kt_body"]/ngb-modal-window/div/div/app-edit-group-approval-modal/div/div[2]/form/div[1]/div/input'));
-    input.clear();
-    input.sendKeys('test Edit Group Approval');
+    await driver.wait(until.elementLocated(By.xpath("//div[contains(@class, 'modal-title') and contains(text(), ' Edit Group Approval ')]")));
+    var ele = driver.findElement(By.name('name'));
+    await ele.clear();
+    await ele.sendKeys('test Edit Group Approval');
     //Submit
     await driver.findElement(By.xpath('//*[@id="kt_body"]/ngb-modal-window/div/div/app-edit-group-approval-modal/div/div[3]/button')).click();
     await driver.sleep(8000);

@@ -1,48 +1,52 @@
 const { By, Key, until } = require('selenium-webdriver');
 require('chromedriver');
-const loginModule = require('../../login/login.js');
+const loginModule = require('../../Login/Login');
 
 describe('XL Single Approval', function() {
  
   before(async function() {
-    let user = process.env.Admin2_Cloud_EMAIL;
-    let pswd = process.env.Admin2_Cloud_PASSWORD;
+    let user = process.env.user1;
+    let pswd = process.env.pswd1;
     await loginModule.login(user,pswd);
   })
   after(async function() {
-    await driver.sleep(5000);
+    await driver.sleep(3000);
+    await loginModule.tanggal();
     await driver.quit();
   })
-  it('List Document Category', async function() {
-
+  it('Create Document Category [Text Area]', async function() {
+    
     await driver.get("https://approval-fe.dev.alurkerja.com/documentcategory");
     await driver.sleep(5000);
-    await driver.findElement(By.xpath('//*[@id="kt_content"]/div/div/app-documentcategory/div/div[1]/div[2]/button')).click();
-    await driver.sleep(3000);
 
-    await driver.findElement(By.xpath('//*[@id="kt_wizard_v1"]/div[2]/div/form/div[1]/div/div[1]/div/input')).sendKeys('Name Test');
-    await driver.sleep(3000);
-    await driver.findElement(By.xpath('//*[@id="kt_wizard_v1"]/div[2]/div/form/div[1]/div/div[5]/div/select/option[2]')).click();
-    await driver.findElement(By.xpath('//*[@id="kt_wizard_v1"]/div[2]/div/form/div[1]/div/div[6]/div/select/option[2]')).click();
-    await driver.sleep(2000);
-    let input = await driver.findElement(By.css(" #kt_wizard_v1 > div.row.my-10.my-lg-15.px-lg-12 > div > form > div.card.card-custom.pb-5 > div > div:nth-child(9) > div.col-lg-2.col-sm-12 > div > div > input"));
-    await input.sendKeys("/Users/ardelliapp/Downloads/IOM.docx");
-    await driver.sleep(2000);
+    var ele = driver.wait(until.elementLocated(By.xpath("//button[contains(text(), 'Create')]")));
+    await ele.click();
 
-    await driver.findElement(By.xpath('//*[@id="cdk-drop-list-0"]/div/div/div/div[1]/div/div/div[1]/div[2]/div')).click();
-    await driver.sleep(3000);
-    await driver.findElement(By.xpath('//*[@id="cdk-drop-list-0"]/div/div/div/div[1]/div/div/div[2]/div/input')).sendKeys('Field Label Test');
-    await driver.findElement(By.xpath('//*[@id="cdk-drop-list-0"]/div/div/div/div[1]/div/div/div[3]/div/select/option[3]')).click();
-    await driver.sleep(2000);
+    await driver.wait(until.elementLocated(By.xpath("//h3[contains(text(), 'Document Field')]")));
+    await driver.findElement(By.name("name")).sendKeys('Issue Field Other Radio Button & Checkbox');
+    await driver.findElement(By.name("subCategory")).sendKeys('New Update 08-04-2023');
+    await driver.findElement(By.xpath('//textarea[@formcontrolname="guidelines"]')).sendKeys('Issue Field Other Radio Button & Checkbox Guidelines');
+    await driver.findElement(By.xpath('//div/select[@formcontrolname="templateType"]')).click()
 
-    await driver.findElement(By.xpath('//*[@id="kt_wizard_v1"]/div[2]/div/div[2]/div[2]/div[2]')).click();
-    await driver.sleep(5000);
-    await driver.findElement(By.xpath('//*[@id="kt_wizard_v1"]/div[2]/div/div[2]/div[2]/div[1]')).click();
-    await driver.sleep(10000);
-    await driver.findElement(By.xpath('//*[@id="kt_body"]/div/div/div[6]/button[1]')).click();
-   
+    var type = 'Custom';
+    await driver.findElement(By.xpath(`//select[@formcontrolname='templateType']//option[contains(text(), '${type}')]`)).click();
 
-    let namaDashboard = await driver.findElement(By.xpath('//*[@id="swal2-title"]')).getText(); 
-    expect(namaDashboard).to.contains("Success");
+    await driver.findElement(By.xpath('//select[@formcontrolname="documentType"]')).click();
+    var type2 = 'Homepass';
+    await driver.findElement(By.xpath(`//select[@formcontrolname='documentType']//option[contains(text(), '${type2}')]`)).click();
+
+    await driver.findElement(By.name('fieldName')).sendKeys('Test Field Label');
+    await driver.findElement(By.xpath("//i[contains(@class, 'flaticon2-down')]")).click();
+    await driver.findElement(By.xpath('//div/select[@formcontrolname="fieldType"]')).click();
+    await driver.findElement(By.xpath("//option[contains(@value, 'textarea')]")).click();
+    await driver.findElement(By.name('fieldDescription')).sendKeys('Test Field Description');
+    
+    await driver.findElement(By.xpath("//div[contains(text(), 'Next')]")).click();
+    var ele = driver.wait(until.elementLocated(By.xpath("//div[contains(text(), 'Create Template')]")));
+    await ele.click();
+
+    await driver.wait(until.elementLocated(By.xpath("//h2[contains(text(), 'Success')]")));
+    var ele = driver.wait(until.elementLocated(By.xpath("//button[contains(text(), 'OK')]")));
+    await ele.click();
   })
 })

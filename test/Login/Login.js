@@ -12,7 +12,7 @@ async function login (user,pswd)
 {
   driver = await new Builder().forBrowser('chrome').build();
   vars = {}
-  let url = process.env.URL_Cloud;
+  let url = 'https://approval-fe.dev.alurkerja.com/';
 
   await driver.get(url);
   await driver.manage().window().maximize();
@@ -60,7 +60,7 @@ async function login (user,pswd)
   // await ele.click();
 
   // /* Validasi halaman Home */
-  // await driver.wait(until.elementLocated(By.xpath('//span[contains(text(), "Home")]')));
+  await driver.wait(until.elementLocated(By.xpath('//span[contains(text(), "Home")]')));
 }
 
 async function tanggal(){

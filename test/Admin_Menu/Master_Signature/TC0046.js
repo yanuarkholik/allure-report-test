@@ -1,7 +1,7 @@
 const { Builder, By, Key, until } = require('selenium-webdriver');
 var expect = require('chai').expect;
 require('chromedriver');
-const loginModule = require('../../login/login.js');
+const loginModule = require('../../Login/Login.js');
 
 describe('XL Single Approval', function() {
  

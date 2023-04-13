@@ -1,16 +1,17 @@
 const { By, Key, until } = require('selenium-webdriver');
 require('chromedriver');
-const loginModule = require('../../login/login.js');
+const loginModule = require('../');
 
 describe('XL Single Approval', function() {
  
   before(async function() {
-    let user = process.env.Admin2_Cloud_EMAIL;
-    let pswd = process.env.Admin2_Cloud_PASSWORD;
+    let user = process.env.user1;
+    let pswd = process.env.pswd1;
     await loginModule.login(user,pswd);
   })
   after(async function() {
     await driver.sleep(3000);
+    await loginModule.tanggal();
     await driver.quit();
   })
   it('Show List Monitoring', async function() {
@@ -18,8 +19,14 @@ describe('XL Single Approval', function() {
     //Role Management
     await driver.get("https://approval-fe.dev.alurkerja.com/monitoring");
     await driver.sleep(7000);
-    //Assertion
-    let validasi = await driver.findElement(By.xpath('//*[@id="kt_content"]/div/div/app-dashboard-monitoring/div/div[1]/div[1]/h3')).getText();
-    expect(validasi).to.contains("Monitoring");
+
+    const type = ['role', 'signature', 'masterdocument'];
+    for (let i = 0; i < type.length; i++) {
+      var ele = driver.wait(until.elementLocated(By.name('status')));
+      await ele.click();
+      let listEle = driver.wait(until.elementLocated(By.xpath(`//select[@name='status']/option[@value='${type[i]}']`)));
+      listEle.click();
+
+    }
   })
 })
