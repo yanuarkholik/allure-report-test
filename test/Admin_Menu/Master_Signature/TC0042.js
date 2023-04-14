@@ -3,7 +3,7 @@ require('chromedriver');
 var expect = require('chai').expect;
 const loginModule = require('../../Login/Login');
 
-describe('XL Single Approval', function() {
+describe('Master Signature', function() {
  
   before(async function() {
     let user = process.env.user2;
@@ -15,7 +15,7 @@ describe('XL Single Approval', function() {
     await driver.quit();
     await loginModule.tanggal();
   })
-  it('Create Signature', async function() {
+  it('TC0042 - Create Signature', async function() {
     
     /* Dapat tambah data Master Signature 
       * Login sebagai Admin Cloud
@@ -31,10 +31,12 @@ describe('XL Single Approval', function() {
     await driver.get(url+"user");
     await driver.sleep(7000);
     await driver.findElement(By.css(".btn-primary:nth-child(1)")).click();
-    await driver.sleep(10000);
+    await driver.sleep(5000);
     await driver.findElement(By.xpath('//*[@id="kt_body"]/ngb-modal-window/div/div/app-edit-user-modal/div/div[2]/div/form/div[3]/div[2]')).click();
     await driver.sleep(2000);
-    await driver.findElement(By.xpath('//*[@id="mat-option-0"]/span/ngx-mat-select-search/div/input')).sendKeys('ardel',Key.ARROW_DOWN);
+    await driver.findElement(By.xpath('//*[@id="mat-option-0"]/span/ngx-mat-select-search/div/input')).sendKeys('ardel');
+    await driver.sleep(3000);
+    await driver.findElement(By.xpath('//*[@id="mat-option-0"]/span/ngx-mat-select-search/div/input')).sendKeys(Key.ARROW_DOWN);
     await driver.findElement(By.xpath('//*[@id="mat-option-0"]/span/ngx-mat-select-search/div/input')).sendKeys(Key.RETURN);
     await driver.sleep(2000);
     await driver.findElement(By.xpath(`//*[@id="kt_body"]/ngb-modal-window/div/div/app-edit-user-modal/div/div[2]/div/form/div[3]/div[4]/div/div/input`)).sendKeys('C:/Users/javan/Pictures/javan issue new/signature.png');
