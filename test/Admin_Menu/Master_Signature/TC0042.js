@@ -3,7 +3,7 @@ require('chromedriver');
 var expect = require('chai').expect;
 const loginModule = require('../../Login/Login');
 
-describe('Master Signature', function() {
+describe('XL Single Approval - Admin Menu - Master Signature', function() {
  
   before(async function() {
     let user = process.env.user2;
