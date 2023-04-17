@@ -1,8 +1,8 @@
 const { By, Key, until } = require('selenium-webdriver');
 require('chromedriver');
-const loginModule = require('../');
+const loginModule = require('../../Login/Login');
 
-describe('XL Single Approval', function() {
+describe('XL Single Approval - Admin Menu - Monitoring', function() {
  
   before(async function() {
     let user = process.env.user1;
@@ -14,7 +14,7 @@ describe('XL Single Approval', function() {
     await loginModule.tanggal();
     await driver.quit();
   })
-  it('Show List Monitoring', async function() {
+  it('TC0071 - Show List Monitoring', async function() {
 
     //Role Management
     await driver.get("https://approval-fe.dev.alurkerja.com/monitoring");
@@ -26,7 +26,6 @@ describe('XL Single Approval', function() {
       await ele.click();
       let listEle = driver.wait(until.elementLocated(By.xpath(`//select[@name='status']/option[@value='${type[i]}']`)));
       listEle.click();
-
     }
   })
 })

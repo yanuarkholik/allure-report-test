@@ -1,8 +1,8 @@
 const { By, Key, until } = require('selenium-webdriver');
 require('chromedriver');
-const loginModule = require('../../login/login.js');
+const loginModule = require('../../Login/Login');
 
-describe('XL Single Approval', function() {
+describe('XL Single Approval - Admin Menu - Group Approval', function() {
  
   before(async function() {
     let user = process.env.user3;
@@ -14,7 +14,7 @@ describe('XL Single Approval', function() {
     await loginModule.tanggal();
     await driver.quit();
   })
-  it('Dapat tambah data approval pada halaman Group Approval', async function() {
+  it('TC0076 - Dapat tambah data approval pada halaman Group Approval', async function() {
   
     /* Dapat tambah data approval pada halaman Group Approval
       * Login sebagai Admin Cloud
