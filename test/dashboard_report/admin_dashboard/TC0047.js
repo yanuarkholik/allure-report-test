@@ -5,8 +5,8 @@ const loginModule = require('../../login/login.js');
 describe('XL Single Approval', function() {
  
   before(async function() {
-    let user = process.env.Admin2_Cloud_EMAIL;
-    let pswd = process.env.Admin2_Cloud_PASSWORD;
+    let user = process.env.user1;
+    let pswd = process.env.pswd1;
     await loginModule.login(user,pswd);
   })
   after(async function() {
