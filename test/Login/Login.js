@@ -4,9 +4,8 @@
   * Sleneium switch back ke halaman Login SAP dan input OTP
   * */
 
-
 const { Builder, By, Key, until } = require('selenium-webdriver');
-require('chromedriver')
+require('chromedriver');
 
 async function login (user,pswd)
 {
