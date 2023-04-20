@@ -23,26 +23,18 @@ describe ('SIMPATIK', function() {
     //Pilih Menu Master Data
     await driver.findElement(By.xpath("//*[@class='py-5 md:py-0']/nav/ul/li[4]/a/div/div")).click();
     await driver.sleep(3000);
-    //Pilih Sub Menu Pangkat Ruang
-    await driver.findElement(By.xpath("/html/body/nav/ul[1]/li[4]/ul/li[26]")).click();
+    //Pilih Sub Menu Organisasi
+    await driver.findElement(By.xpath("/html/body/nav/ul[1]/li[4]/ul/li[25]")).click();
     await driver.sleep(3000);
     let list = await driver.findElement(By.css('h2[class="text-lg font-medium mr-auto flex-none"]')).getText();
-    expect(list).to.equal('List Pangkat Ruang')
+    expect(list).to.equal('List Organisasi')
     await driver.sleep(3000);
-    //Tambah Pangkat Ruang
-    await driver.findElement(By.className("btn bg-green-600 text-white w-left")).click();
-    await driver.sleep(3000);
-    await driver.findElement(By.xpath('//*[@id="modal-create-body"]/form/div/div[1]/div/input')).sendKeys('D');
+    //Halaman Detail Organinasi
+    await driver.findElement(By.xpath("/html/body/div[5]/div/div[2]/div[4]/div/div/table/tbody/tr[2]/td[8]/div/button[1]")).click();
     await driver.sleep(1000);
-    await driver.findElement(By.xpath('//*[@id="modal-create-body"]/form/div/div[2]/div/input')).sendKeys('4');
-    await driver.sleep(1000);
-    await driver.findElement(By.xpath('//*[@id="modal-create-body"]/form/div/div[3]/div/input')).sendKeys('12');
-    await driver.sleep(1000);
-    await driver.findElement(By.xpath('//*[@id="modal-create-body"]/form/div/div[4]/div/input')).sendKeys('Pembina Utama Madyaaaa');
-    await driver.sleep(1000);
-    await driver.findElement(By.className('btn btn-primary md:w-auto w-[48%]')).click();
-    await driver.sleep(1000);
-    //Alert Berhasil Tambah Pangkat Ruang
-    await driver.findElements(By.xpath("p[contains(text(), 'Data berhasil disimpan')]"));
+    //Validasi Halaman Detail
+    let konfirmasiDetail = await driver.findElement(By.xpath('/html/body/div[5]/div/div[2]/div[2]/div[1]/h3')).getText();
+    expect(konfirmasiDetail).to.equal('Detail Organisasi');
   });
 });
+

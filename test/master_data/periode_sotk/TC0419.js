@@ -11,7 +11,7 @@ describe('simpatik', function() {
   after(async function() {
     await driver.quit();
   })
-  it('Administrator dapat menambahkan Periode SOTK', async function() {
+  it('Administrator tidak dapat tambah Periode SOTK dengan inputan kosong pada field yang bersifat wajib diisi', async function() {
     await driver.get("https://simpatik-fe.merapi.javan.id");
     await driver.manage().window().maximize();
     await driver.manage().window();
@@ -30,17 +30,20 @@ describe('simpatik', function() {
     await driver.findElement(By.css('button[class="btn bg-green-600 text-white w-left"]')).click();
     await driver.sleep(1000);
     //Isi field Nomor Permen
-    await driver.findElement(By.css('input[name="nomor_permen"]')).sendKeys('71/PER/M.KOMINFO/03/2019');
+    await driver.findElement(By.css('input[name="nomor_permen"]')).sendKeys('');
     await driver.sleep(1000);
     //Isi field Tanggal
-    await driver.findElement(By.css('input[name="tanggal"]')).sendKeys('01-11-2019');
+    await driver.findElement(By.css('input[name="tanggal"]')).sendKeys('');
     await driver.sleep(1000);
     //Upload Arsip
     //Klik save
     await driver.findElement(By.css('[data-btn="save"]')).click();
     await driver.sleep(1000);
-    //expected result Terdapat pop up nofitication berhasil menambahkan periode STOK
-    // await driver.findElement(By.xpath("p[contains(text(), 'sudah ada')]"));
-    await driver.wait(until.elementsLocated(By.xpath("//p[contains(text(), 'Data berhasil disimpan')]")),5000);
+    //expected result Terdapat warning wajib mengisi field nomor permen
+    let warning_permen = await driver.findElement(By.css('#modal-create-body > form > div > div:nth-child(1) > div > div')).getText();
+    expect(warning_permen).to.equal('Nomor Permen wajib diisi.');
+    //expected result Terdapat warning wajib mengisi field nomor permen
+    let warning_tanggal = await driver.findElement(By.css('#modal-create-body > form > div > div:nth-child(2) > div > div')).getText();
+    expect(warning_tanggal).to.equal('Tanggal wajib diisi.');
   })
 })

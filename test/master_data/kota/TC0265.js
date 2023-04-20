@@ -32,7 +32,7 @@ describe ('SIMPATIK', function() {
     //Klik 1x Kolom Kota
     await driver.findElement(By.xpath('/html/body/div[5]/div/div[2]/div[3]/div/div/table/thead/tr/th[4]')).click();
     await driver.sleep(5000);
-    //Konfirmasi Descending
+    //Konfirmasi Ascending
     let desc = await driver.findElement(By.xpath('/html/body/div[5]/div/div[2]/div[3]/div/div/table/tbody/tr[1]/td[4]')).getText();
     expect(desc).to.equal('KABUPATEN ACEH BESAR');
   });

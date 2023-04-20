@@ -11,7 +11,7 @@ describe('simpatik', function() {
   after(async function() {
     await driver.quit();
   })
-  it('Administrator dapat unduh file Periode SOTK', async function() {
+  it('Administrator tidak dapat tambah Periode SOTK dengan inputan yang sama dengan data Periode SOTK yang telah ada sebelumnya', async function() {
     await driver.get("https://simpatik-fe.merapi.javan.id");
     await driver.manage().window().maximize();
     await driver.manage().window();
@@ -26,8 +26,20 @@ describe('simpatik', function() {
     // klik menu STOK
     await driver.findElement(By.xpath("/html/body/nav/ul[1]/li[4]/ul/li[36]/a")).click();
     await driver.sleep(1000);
-    //Klik unduh STOK
-    await driver.findElement(By.css('a[class="tooltip btn btn-primary"]')).click();
+    //Klik tambah periode STOK
+    await driver.findElement(By.css('button[class="btn bg-green-600 text-white w-left"]')).click();
     await driver.sleep(1000);
+    //Isi field Nomor Permen
+    await driver.findElement(By.css('input[name="nomor_permen"]')).sendKeys('19/PER/M.KOMINFO/09/2017');
+    await driver.sleep(1000);
+    //Isi field Tanggal
+    await driver.findElement(By.css('input[name="tanggal"]')).sendKeys('30-12-2022');
+    await driver.sleep(1000);
+    //Upload Arsip
+    //Klik save
+    await driver.findElement(By.css('[data-btn="save"]')).click();
+    await driver.sleep(1000);
+    //expected result Terdapat warning apabila inputan yang sama dengan data Periode SOTK yang telah ada sebelumnya
+    await driver.wait(until.elementsLocated(By.xpath("//p[contains(text(), 'input nomor permen yang anda entrikan sudah ada')]")),5000);
   })
 })
