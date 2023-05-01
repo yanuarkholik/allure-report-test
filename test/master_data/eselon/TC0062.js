@@ -28,7 +28,7 @@ describe('MASTER DATA ESELON', function() {
     let list = await driver.findElement(By.css('h2[class="text-lg font-medium mr-auto flex-none"]')).getText();
     expect(list).to.equal('List Eselon')
 
-    // Click button editg
+    // Click button edit
     await driver.findElement(By.xpath("//*[@class='box']/div/div/table/tbody/tr[1]/td[7]/div[1]/button[2]")).click()
     await driver.sleep(2000);
     
