@@ -1,1 +1,1 @@
-{"total":1,"items":[{"uid":"734224ae100cf2952c31b13fdf125e98","name":"XL Single Approval - Admin Menu - Group Approval","statistic":{"failed":0,"broken":0,"skipped":0,"passed":4,"unknown":0,"total":4}}]}
+{"total":2,"items":[{"uid":"53a0d2c06ff5e79c60094009416b3905","name":"MASTER DATA AGAMA","statistic":{"failed":1,"broken":1,"skipped":0,"passed":1,"unknown":0,"total":3}},{"uid":"734224ae100cf2952c31b13fdf125e98","name":"XL Single Approval - Admin Menu - Group Approval","statistic":{"failed":0,"broken":0,"skipped":0,"passed":4,"unknown":0,"total":4}}]}
