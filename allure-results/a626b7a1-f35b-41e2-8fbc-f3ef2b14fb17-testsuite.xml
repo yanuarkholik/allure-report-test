@@ -1,0 +1,15 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1683008874219' stop='1683008889366'>
+    <name>MASTER DATA AGAMA</name>
+    <title>MASTER DATA AGAMA</title>
+    <test-cases>
+        <test-case start='1683008875996' status='passed' stop='1683008889293'>
+            <name>Dapat tambah data sub menu Agama</name>
+            <title>Dapat tambah data sub menu Agama</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>

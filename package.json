@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "selenium-test",
   "version": "1.0.0",
   "description": "",
@@ -8,11 +9,24 @@
     "start": "allure open allure-report --port 8080",
     "report": "allure generate allure-results --clean",
     "test": "mocha -r dotenv/config --no-timeouts"
+=======
+  "name": "selenium-simpatik",
+  "version": "1.0.0",
+  "description": "Project untuk Selenium Simpatik",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -r dotenv/config  --no-timeouts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.javan.co.id/automation-test/selenium-simpatik"
+>>>>>>> f0fac5164058dc57d259a2d6e655b1a452164f83
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+<<<<<<< HEAD
     "allure-commandline": "^2.21.0",
     "chai": "^4.3.6",
     "chromedriver": "^111.0.0",
@@ -26,5 +40,14 @@
   "devDependencies": {
     "allure-mocha": "^2.1.0",
     "mocha": "^10.2.0"
+=======
+    "chai": "^4.3.7",
+    "chai-sorted": "^0.2.0",
+    "chromedriver": "^111.0.0",
+    "dotenv": "^16.0.3",
+    "geckodriver": "^3.2.0",
+    "mocha": "^10.2.0",
+    "selenium-webdriver": "^4.8.2"
+>>>>>>> f0fac5164058dc57d259a2d6e655b1a452164f83
   }
 }

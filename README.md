@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # XL-Single Approval Platform
 Support tim XL untuk monitoring aplikasi (getapprove.xl.co.id)[getapprove.xl.co.id] & melakukan bug fixing jika terjadi issue
 
@@ -40,3 +41,8 @@ npm test <path> // untuk path spesifik
 ![allure-report](https://gitlab.javan.co.id/automation-test/selenium-sap/-/blob/master/data/img/allure-report.png)
 ![allure-report2](https://gitlab.javan.co.id/automation-test/selenium-sap/-/blob/master/data/img/allure-report2.png)
 
+=======
+# Selenium Simpatik
+
+Project untuk Selenium Simpatik
+>>>>>>> f0fac5164058dc57d259a2d6e655b1a452164f83
