@@ -1,0 +1,27 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1683009154525' stop='1683009166735'>
+    <name>MASTER DATA AGAMA</name>
+    <title>MASTER DATA AGAMA</title>
+    <test-cases>
+        <test-case start='1683009155926' status='broken' stop='1683009166626'>
+            <name>Dapat mengakses halaman detail data sub menu Agama</name>
+            <title>Dapat mengakses halaman detail data sub menu Agama</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+            <failure>
+                <message>no such element: Unable to locate element: {"method":"xpath","selector":"//dd[contains(text(), 'agama baru')]"}
+                  (Session info: chrome=112.0.5615.138)</message>
+                <stack-trace>NoSuchElementError: no such element: Unable to locate element: {"method":"xpath","selector":"//dd[contains(text(), 'agama baru')]"}
+                  (Session info: chrome=112.0.5615.138)
+                    at Object.throwDecodedError (node_modules\selenium-webdriver\lib\error.js:524:15)
+                    at parseHttpResponse (node_modules\selenium-webdriver\lib\http.js:601:13)
+                    at Executor.execute (node_modules\selenium-webdriver\lib\http.js:529:28)
+                    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+                    at async Driver.execute (node_modules\selenium-webdriver\lib\webdriver.js:745:17)
+                    at async Context.&lt;anonymous> (test\master_data\agama\TC0002.js:36:5)</stack-trace>
+            </failure>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>

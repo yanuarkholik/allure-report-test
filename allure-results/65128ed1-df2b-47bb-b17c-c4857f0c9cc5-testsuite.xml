@@ -1,0 +1,21 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1683009227706' stop='1683009243303'>
+    <name>MASTER DATA AGAMA</name>
+    <title>MASTER DATA AGAMA</title>
+    <test-cases>
+        <test-case start='1683009229101' status='failed' stop='1683009243194'>
+            <name>Dapat mengubah data sub menu Agama</name>
+            <title>Dapat mengubah data sub menu Agama</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+            <failure>
+                <message>expected 'agama baru' to equal 'Agama yang sudah ada'</message>
+                <stack-trace>AssertionError: expected 'agama baru' to equal 'Agama yang sudah ada'
+                    at Context.&lt;anonymous> (test\master_data\agama\TC0003.js:41:23)
+                    at processTicksAndRejections (node:internal/process/task_queues:96:5)</stack-trace>
+            </failure>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>
