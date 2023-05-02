@@ -1,0 +1,15 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1683013073167' stop='1683013112253'>
+    <name>XL Single Approval - Admin Menu - Master Signature</name>
+    <title>XL Single Approval - Admin Menu - Master Signature</title>
+    <test-cases>
+        <test-case start='1683013080464' status='passed' stop='1683013109189'>
+            <name>TC0042 - Create Signature</name>
+            <title>TC0042 - Create Signature</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>
