@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -r dotenv/config --no-timeouts --reporter mocha-allure-reporter",
+    "running": "mocha -r dotenv/config --no-timeouts --reporter mocha-allure-reporter",
     "start": "allure open allure-report --port 8080",
     "report": "allure generate allure-results --clean"
-    ,"running": "mocha -r dotenv/config --no-timeouts"
+    ,"test": "mocha -r dotenv/config --no-timeouts"
   },
   "keywords": [],
   "author": "",

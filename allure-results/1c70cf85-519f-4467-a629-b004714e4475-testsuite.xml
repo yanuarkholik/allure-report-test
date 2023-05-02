@@ -1,0 +1,15 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1682996956008' stop='1682996974741'>
+    <name>XL Single Approval - Admin Menu - Group Approval</name>
+    <title>XL Single Approval - Admin Menu - Group Approval</title>
+    <test-cases>
+        <test-case start='1682996963735' status='passed' stop='1682996971472'>
+            <name>TC0079 - Able to access Group Approval page</name>
+            <title>TC0079 - Able to access Group Approval page</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>

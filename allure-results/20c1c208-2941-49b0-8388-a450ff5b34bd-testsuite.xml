@@ -1,0 +1,15 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1682996931538' stop='1682996956006'>
+    <name>XL Single Approval - Admin Menu - Group Approval</name>
+    <title>XL Single Approval - Admin Menu - Group Approval</title>
+    <test-cases>
+        <test-case start='1682996939050' status='passed' stop='1682996952887'>
+            <name>TC0078 - Able to remove data Group Approval</name>
+            <title>TC0078 - Able to remove data Group Approval</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>
