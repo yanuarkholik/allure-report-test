@@ -1,46 +1,52 @@
-const { Builder, By, Key, until } = require('selenium-webdriver');
-var expect = require('chai').expect;
-require('chromedriver')
+const { By, Key, until } = require('selenium-webdriver');
+const pages = require('../../../pages/pages');
 
-describe('MASTER DATA AGAMA', function() {
- 
-  before(async function() {
-    driver = await new Builder().forBrowser('chrome').build();
-    vars = {}
-    await driver.get("https://simpatik-fe.merapi.javan.id/login");
-    await driver.manage().window().maximize();
-  })
-  after(async function() {
-    await driver.quit();
-  })
-  it('Dapat membersihkan kolom search bar setelah melakukan pencarian data sub menu Agama', async function() {
-    await driver.findElement(By.css("#username")).sendKeys('doni007');
-    await driver.findElement(By.css("#password")).sendKeys('secret');
-    await driver.findElement(By.css("button[type='submit']")).click()
-    
-    // halaman list data Agama
-    await driver.wait(until.elementsLocated(By.xpath("//h1[contains(text(), 'Dashboard')]")));
-    await driver.findElement(By.linkText("Master Data")).click();
-    var ele = driver.wait(until.elementLocated(By.linkText("Agama")));
-    await ele.click();
+describe('Simpatik', function() {
+  describe('Master Data', function() {
+    describe('Master Data Agama', function() {
+      before(async function() {
+        let user = process.env.user1;
+        let pswd = process.env.pswd1;
+        await pages.login(user,pswd);
+      })
+      after(async function() {
+        await driver.quit();
+      })
+      it('[TC0011] Admin dapat bersihkan search bar setelah melakukan pencarian data agama', async function() {
 
-    // mencari data Agama
-    var search = "Agama yang belum ada" ;
-    var ele = driver.wait(until.elementLocated(By.name("search")));
-    await ele.sendKeys(search);
-    await ele.sendKeys(Key.ENTER);
+        /* Admin dapat bersihkan search bar setelah melakukan pencarian data agama
+          * Login sebagai Admin
+          * Pilih menu Master Data
+          * Pilih sub menu Agama
+          * Input kata kunci yang sesuai pada kolom search
+          * Klik tombol Bersihkan
+          * */
+        
+        // halaman list data Agama
+        await driver.wait(until.elementsLocated(By.xpath("//h1[contains(text(), 'Dashboard')]")));
+        await driver.findElement(By.linkText("Master Data")).click();
+        var ele = driver.wait(until.elementLocated(By.linkText("Agama")));
+        await ele.click();
 
-    // membersigkan search bar
-    await driver.findElement(By.xpath("//button[@type='reset']")).click();
+        // mencari data Agama
+        var search = "Agama yang belum ada update" ;
+        var ele = driver.wait(until.elementLocated(By.name("search")));
+        await ele.sendKeys(search);
+        await ele.sendKeys(Key.ENTER);
 
-    // mencari data Agama
-    var search = "Agama yang tidak ada" ;
-    var ele = driver.wait(until.elementLocated(By.name("search")));
-    await ele.sendKeys(search);
-    await ele.sendKeys(Key.ENTER);
+        // membersigkan search bar
+        await driver.findElement(By.xpath("//button[@type='reset']")).click();
 
-    // membersigkan search bar
-    await driver.findElement(By.xpath("//button[@type='reset']")).click();
+        // mencari data Agama
+        var search = "Agama yang tidak ada" ;
+        var ele = driver.wait(until.elementLocated(By.name("search")));
+        await ele.sendKeys(search);
+        await ele.sendKeys(Key.ENTER);
 
+        // membersigkan search bar
+        await driver.findElement(By.xpath("//button[@type='reset']")).click();
+
+      })
+    })
   })
 })
