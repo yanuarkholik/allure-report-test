@@ -4,7 +4,7 @@
   "description": "Project untuk Selenium Simpatik",
   "main": "index.js",
   "scripts": {
-    "running": "mocha -r dotenv/config --no-timeouts --reporter mocha-allure-reporter",
+    "running": "mocha -r dotenv/config --no-timeouts --reporter allure-mocha",
     "start": "allure open allure-report --port 8080",
     "report": "allure generate allure-results --clean",
     "test": "mocha -r dotenv/config --no-timeouts"
@@ -18,12 +18,13 @@
   "license": "ISC",
   "dependencies": {
     "allure-commandline": "^2.22.0",
+    "allure-mocha": "^2.3.0",
     "chai": "^4.3.7",
-    "chromedriver": "^111.0.0",
+    "chromedriver": "^113.0.0",
     "dotenv": "^16.0.3",
     "geckodriver": "^3.2.0",
     "mocha": "^10.2.0",
     "mocha-allure-reporter": "^1.4.0",
-    "selenium-webdriver": "^4.9.0"
+    "selenium-webdriver": "^4.9.2"
   }
 }
